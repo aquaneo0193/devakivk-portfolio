@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Devaki V K | CTO, App, Website & Software Developer</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Modern Font Stack: Clash Display, Cabinet Grotesk & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cabinet+Grotesk:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Clash Display"', '"Cabinet Grotesk"', 'sans-serif'],
+            heading: ['"Cabinet Grotesk"', 'sans-serif'],
+          },
+          colors: {
+            violet: {
+              400: '#a78bfa',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+            },
+            onyx: {
+              950: '#06040b',
+              900: '#0d0918',
+              850: '#140e24',
+              800: '#1c1533',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Modern Cursor */
+    @media (pointer: fine) {
+      body { cursor: none; }
+      #custom-cursor-dot, #custom-cursor-ring {
+        pointer-events: none;
+        position: fixed;
+        top: 0; left: 0;
+        z-index: 9999;
+        border-radius: 9999px;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.2s ease, transform 0.15s ease;
+      }
+      #custom-cursor-dot {
+        width: 8px;
+        height: 8px;
+        background-color: #a78bfa;
+      }
+      #custom-cursor-ring {
+        width: 34px;
+        height: 34px;
+        border: 1.5px solid rgba(167, 139, 250, 0.45);
+        transition: width 0.2s, height 0.2s, border-color 0.2s;
+      }
+    }
+    @media (pointer: coarse) {
+      #custom-cursor-dot, #custom-cursor-ring { display: none; }
+    }
+
+    /* Ambient Tech Grid */
+    .bg-grid {
+      background-size: 48px 48px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    }
+
+    /* Moving Gradient Background Glow */
+    .moving-bg-gradient {
+      background: linear-gradient(135deg, #06040b 0%, #1e0e3f 25%, #0a0515 50%, #15092a 75%, #06040b 100%);
+      background-size: 400% 400%;
+      animation: bgShift 20s ease-in-out infinite alternate;
+    }
+    @keyframes bgShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating Orbs */
+    @keyframes floatOrb1 {
+      0%, 100% { transform: translate(0px, 0px) scale(1); }
+      50% { transform: translate(60px, -40px) scale(1.15); }
+    }
+    @keyframes floatOrb2 {
+      0%, 100% { transform: translate(0px, 0px) scale(1); }
+      50% { transform: translate(-50px, 50px) scale(1.08); }
+    }
+    .animate-orb-1 { animation: floatOrb1 16s ease-in-out infinite; }
+    .animate-orb-2 { animation: floatOrb2 20s ease-in-out infinite; }
+
+    /* Synchronized Ambient Text Animations */
+    @keyframes textGlow {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 300% 0%; }
+    }
+    
+    @keyframes auroraFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Main Name Animation */
+    .aurora-gradient-text {
+      background: linear-gradient(
+        135deg, #ffffff 0%, #c4b5fd 25%, #a78bfa 50%, #e9d5ff 75%, #818cf8 100%
+      );
+      background-size: 250% 250%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: auroraFlow 8s ease-in-out infinite;
+      text-shadow: 0 0 35px rgba(139, 92, 246, 0.35);
+    }
+
+    /* Vibrant Headings Animation */
+    .vibrant-heading-text {
+      background: linear-gradient(90deg, #ffffff, #c084fc, #38bdf8, #f472b6, #ffffff);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textGlow 6s linear infinite;
+      display: inline-block;
+    }
+
+    /* CTO Specific Animated Badge */
+    .animated-gradient-border {
+      position: relative;
+      border-radius: 0.375rem;
+      background: rgba(15, 11, 26, 0.85);
+      z-index: 1;
+    }
+    .animated-gradient-border::before {
+      content: '';
+      position: absolute;
+      inset: -1.5px;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #a855f7, #ec4899, #3b82f6, #a855f7);
+      background-size: 300% 100%;
+      z-index: -1;
+      animation: textGlow 3s linear infinite;
+    }
+    .animated-gradient-text {
+      background: linear-gradient(90deg, #d8b4fe, #f9a8d4, #93c5fd, #d8b4fe);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textGlow 3s linear infinite;
+    }
+
+    /* Glassmorphism Cards */
+    .glass-card {
+      background: rgba(20, 14, 36, 0.65);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(139, 92, 246, 0.16);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(167, 139, 250, 0.45);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px -10px rgba(109, 40, 217, 0.3);
+    }
+
+    /* Crisp High-Definition Image Rendering */
+    .hd-profile-img {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+  </style>
+</head>
+
+<body class="moving-bg-gradient text-slate-200 font-sans selection:bg-violet-600 selection:text-white relative overflow-x-hidden antialiased">
+
+  <!-- Desktop Custom Cursor -->
+  <div id="custom-cursor-dot"></div>
+  <div id="custom-cursor-ring"></div>
+
+  <!-- Background Ambience & Grid -->
+  <div class="fixed inset-0 bg-grid pointer-events-none z-0 opacity-60"></div>
+  <div class="fixed top-[-10%] left-[-5%] w-[550px] h-[550px] rounded-full bg-violet-600/20 blur-[130px] pointer-events-none animate-orb-1 z-0"></div>
+  <div class="fixed bottom-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-indigo-600/15 blur-[150px] pointer-events-none animate-orb-2 z-0"></div>
+
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-onyx-950/75 border-b border-violet-900/20 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- Brand & Name -->
+      <a href="#hero" class="flex items-center gap-3.5 mr-10 md:mr-16 lg:mr-24 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-500 flex items-center justify-center text-white font-display font-bold shadow-lg shadow-violet-600/30 group-hover:scale-105 transition-transform">
+          D
+        </div>
+        <span class="font-display font-bold text-xl tracking-wide text-white group-hover:text-violet-400 transition-colors">
+          Devaki V K
+        </span>
+      </a>
+
+      <!-- Desktop Tap Bar Menu -->
+      <nav class="hidden md:flex items-center gap-2">
+        <a href="#specializations" class="px-3.5 py-1.5 rounded-lg bg-onyx-900/70 border border-violet-900/30 text-xs font-heading font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:border-violet-500/50 hover:bg-violet-950/40 transition-all">
+          Specializations
+        </a>
+        <a href="#projects" class="px-3.5 py-1.5 rounded-lg bg-onyx-900/70 border border-violet-900/30 text-xs font-heading font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:border-violet-500/50 hover:bg-violet-950/40 transition-all">
+          Projects
+        </a>
+        <a href="#research" class="px-3.5 py-1.5 rounded-lg bg-onyx-900/70 border border-violet-900/30 text-xs font-heading font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:border-violet-500/50 hover:bg-violet-950/40 transition-all">
+          Research
+        </a>
+        <a href="#pricing" class="px-3.5 py-1.5 rounded-lg bg-onyx-900/70 border border-violet-900/30 text-xs font-heading font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:border-violet-500/50 hover:bg-violet-950/40 transition-all">
+          Pricing & Hosting
+        </a>
+        <a href="#contact" class="px-3.5 py-1.5 rounded-lg bg-onyx-900/70 border border-violet-900/30 text-xs font-heading font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:border-violet-500/50 hover:bg-violet-950/40 transition-all">
+          Contact
+        </a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="hidden md:flex items-center gap-3">
+        <button id="resumeModalBtn" class="px-4 py-2 rounded-lg bg-onyx-850 hover:bg-violet-950/60 border border-violet-600/40 hover:border-violet-500 text-xs font-heading font-bold uppercase tracking-wider text-violet-300 transition-all shadow-sm">
+          <i class="fa-solid fa-file-lines mr-1.5"></i> Resume
+        </button>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=developerandroid027@gmail.com" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-xs font-heading font-bold uppercase tracking-wider text-white shadow-md shadow-violet-600/30 transition-all">
+          Email Devaki
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobileMenuBtn" aria-label="Toggle Navigation" class="md:hidden text-slate-300 hover:text-white text-xl">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileDrawer" class="hidden md:hidden px-6 pt-3 pb-6 bg-onyx-900/95 border-b border-violet-900/30 flex flex-col gap-2">
+      <a href="#specializations" class="mobile-nav-link py-2 px-3 rounded-lg bg-onyx-850 border border-violet-900/20 text-sm font-medium text-slate-300">Specializations</a>
+      <a href="#projects" class="mobile-nav-link py-2 px-3 rounded-lg bg-onyx-850 border border-violet-900/20 text-sm font-medium text-slate-300">Projects</a>
+      <a href="#research" class="mobile-nav-link py-2 px-3 rounded-lg bg-onyx-850 border border-violet-900/20 text-sm font-medium text-slate-300">Research</a>
+      <a href="#pricing" class="mobile-nav-link py-2 px-3 rounded-lg bg-onyx-850 border border-violet-900/20 text-sm font-medium text-slate-300">Pricing & Hosting</a>
+      <a href="#contact" class="mobile-nav-link py-2 px-3 rounded-lg bg-onyx-850 border border-violet-900/20 text-sm font-medium text-slate-300">Contact</a>
+      <div class="pt-2 flex flex-col gap-2">
+        <button id="mobileResumeBtn" class="w-full py-2.5 rounded-lg bg-onyx-850 border border-violet-500/40 text-violet-300 text-sm font-bold text-center">
+          <i class="fa-solid fa-file-lines mr-1.5"></i> View Resume
+        </button>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=developerandroid027@gmail.com" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-sm font-bold text-center">
+          Email Devaki
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 pt-32 pb-24 max-w-7xl mx-auto px-6">
+    <section id="hero" class="min-h-[80vh] flex flex-col lg:flex-row items-center justify-between gap-12 pt-6">
+      
+      <div class="lg:w-7/12 flex flex-col items-start">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-950/60 border border-violet-500/30 text-violet-400 text-xs font-heading font-bold uppercase tracking-widest mb-6 shadow-[0_0_20px_rgba(139,92,246,0.15)]">
+          <span class="w-2 h-2 rounded-full bg-violet-400 animate-pulse"></span>
+          Leadership & Technical Portfolio
+        </div>
+
+        <!-- Animated Gradient Heading for Name -->
+        <h1 class="font-display font-bold text-5xl sm:text-6xl lg:text-7xl tracking-tight leading-[1.05] mb-5 aurora-gradient-text">
+          DEVAKI V K
+        </h1>
+
+        <!-- Animated Colorful Highlight Badge for CTO Designation -->
+        <div class="flex flex-wrap items-center gap-3 mb-6 text-sm font-heading font-bold tracking-wide">
+          <div class="animated-gradient-border px-4 py-1.5 shadow-[0_0_20px_rgba(139,92,246,0.35)]">
+            <span class="animated-gradient-text text-xs uppercase tracking-widest">CTO @ SkillAura</span>
+          </div>
+          <span class="text-slate-500">•</span>
+          <span class="text-slate-300">App Development</span>
+          <span class="text-slate-500">•</span>
+          <span class="text-slate-300">Website Development</span>
+          <span class="text-slate-500">•</span>
+          <span class="text-slate-300">Software Developer</span>
+          <span class="text-slate-500">•</span>
+          <span class="text-slate-300">Hosting Specialist</span>
+        </div>
+
+        <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mb-8 font-normal">
+          Devaki V K drives technological innovation as Chief Technical Officer at SkillAura, architecting modern digital platforms and intuitive user experiences. Specializing in frontend architectures, cryptographic cloud frameworks, and high-performance server deployments.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=developerandroid027@gmail.com" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-heading font-bold text-sm uppercase tracking-wider shadow-lg shadow-violet-600/30 flex items-center gap-2 transition-all">
+            <i class="fa-solid fa-envelope"></i> Email Devaki
+          </a>
+          <a href="#pricing" class="px-6 py-3 rounded-xl bg-onyx-850 hover:bg-onyx-800 border border-violet-900/40 text-slate-200 font-heading font-bold text-sm uppercase tracking-wider hover:border-violet-500/40 transition-all">
+            Hosting & Pricing
+          </a>
+        </div>
+      </div>
+
+      <!-- Developer Profile Visual -->
+      <div class="lg:w-5/12 flex justify-center">
+        <div class="relative group">
+          <div class="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-violet-600 via-indigo-600 to-violet-400 opacity-30 group-hover:opacity-60 blur-xl transition-all duration-700"></div>
+          <div class="relative rounded-3xl overflow-hidden border border-violet-500/25 bg-onyx-900/90 p-3 shadow-2xl">
+            <img 
+              src="https://imgh.in/host/ofmej7" 
+              alt="Devaki V K" 
+              class="hd-profile-img rounded-2xl w-[320px] sm:w-[380px] h-[460px] object-cover object-top shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]"
+              onerror="this.onerror=null; this.src='https://placehold.co/400x520/17112b/a78bfa?text=Devaki+V+K';"
+            />
+            <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-onyx-950/85 backdrop-blur-md border border-violet-500/20">
+              <p class="font-display font-bold text-white text-base tracking-wide">Devaki V K</p>
+              <p class="text-xs text-violet-400 font-heading font-semibold">CTO @ SkillAura • Web & App Development</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="specializations" class="pt-24">
+      <div class="mb-12">
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white mb-3 vibrant-heading-text">Core Specializations</h2>
+        <p class="text-slate-400 max-w-xl text-sm leading-relaxed">Proven competencies spanning core software engineering, application architecture, and cloud deployment pipelines.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-card p-8 rounded-2xl">
+          <div class="w-12 h-12 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-400 text-xl mb-6">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <h3 class="font-display font-bold text-xl text-white mb-2">Frontend Engineering</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            Advanced craftsmanship in HTML5, CSS3, and JavaScript logic. Experience engineering responsive, fluid, and scalable component structures for complex user interfaces.
+          </p>
+          <div class="flex flex-wrap gap-1.5 text-xs text-violet-300 font-heading font-medium">
+            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">HTML5</span>
+            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">CSS3</span>
+            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">JavaScript</span>
+            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">UI/UX</span>
+          </div>
+        </div>
+
+        <div class="glass-card p-8 rounded-2xl">
+          <div class="w-12 h-12 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-400 text-xl mb-6">
+            <i class="fa-solid fa-diagram-project"></i>
+          </div>
+          <h3 class="font-display font-bold text-xl text-white mb-2">Core Programming & Logic</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            Rigorous algorithmic foundations grounded in C, Java, and Python. Proficient in Object-Oriented Programming (OOP) architectures and system logic flows.
+          </p>
+          <div class="flex flex-wrap gap-1.5 text-xs text-violet-300 font-heading font-medium">
+            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">C Language</span>
+            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">Java</span>
+            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">Python</span>
+            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">Data Structures</span>
+          </div>
+        </div>
+
+        <div class="glass-card p-8 rounded-2xl">
+          <div class="w-12 h-12 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-400 text-xl mb-6">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+          </div>
+          <h3 class="font-display font-bold text-xl text-white mb-2">Cloud Hosting & Ops</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            End-to-end management of hosting life cycles, continuous deployments via Netlify, DNS records routing, SSL security, and GoDaddy platform control.
+          </p>
+          <div class="flex flex-wrap gap-1.5 text-xs text-violet-300 font-heading font-medium">
+            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">Netlify CI/CD</span>
+            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">GoDaddy DNS</span>
+            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">SSL / TLS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="pt-28">
+      <div class="mb-12">
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white mb-3 vibrant-heading-text">Featured Projects</h2>
+        <p class="text-slate-400 max-w-xl text-sm leading-relaxed">Scalable digital products, educational systems, and architectural implementations.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Project 1: SkillAura -->
+        <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between group">
+          <div>
+            <a href="https://skill-aura.in" target="_blank" rel="noopener noreferrer" class="relative w-full h-56 bg-onyx-900 overflow-hidden border-b border-violet-900/30 p-4 flex items-center justify-center block cursor-pointer">
+              <img 
+                src="https://i.ibb.co/qY8Ng2tX/skill-aura-logo-3.jpg" 
+                alt="SkillAura Logo Preview" 
+                class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                onerror="this.onerror=null; this.src='https://placehold.co/600x400/130d24/8b5cf6?text=SkillAura+Platform';"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-onyx-950/90 via-onyx-950/30 to-transparent pointer-events-none"></div>
+              <span class="absolute top-4 left-4 text-[11px] font-heading font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-violet-950/80 text-violet-300 border border-violet-500/40 backdrop-blur-md">
+                EdTech Ecosystem
+              </span>
+            </a>
+
+            <div class="p-6 sm:p-7">
+              <h3 class="font-display font-bold text-2xl text-white mb-3 group-hover:text-violet-300 transition-colors">
+                <a href="https://skill-aura.in" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 hover:text-violet-400 transition-colors">
+                  SkillAura <i class="fa-solid fa-arrow-up-right-from-square text-[15px] text-violet-400/80"></i>
+                </a>
+              </h3>
+              <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                Comprehensive EdTech initiative providing specialized training platforms for educators and learners. Devaki directs technical product architecture, frontend engineering, and seamless performance optimization as CTO.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-7 pt-0 border-t border-violet-900/20 mt-auto flex items-center justify-between">
+            <span class="text-xs text-slate-400 font-heading">Status: Active CTO Leadership</span>
+            <span class="text-xs font-heading font-bold text-violet-400">Web Architecture</span>
+          </div>
+        </div>
+
+        <!-- Project 2: Quarkinophysics with Verified User Image -->
+        <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between group">
+          <div>
+            <div class="relative w-full h-56 bg-onyx-900 overflow-hidden border-b border-violet-900/30 p-6 flex items-center justify-center">
+              <img 
+                src="https://i.ibb.co/3mkn9Jqt/Quarkino-LOGO.png" 
+                alt="Quarkinophysics Logo" 
+                class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                onerror="this.onerror=null; this.src='https://placehold.co/600x400/130d24/8b5cf6?text=Quarkinophysics+Platform';"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-onyx-950/90 via-onyx-950/30 to-transparent pointer-events-none"></div>
+              <span class="absolute top-4 left-4 text-[11px] font-heading font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-violet-950/80 text-violet-300 border border-violet-500/40 backdrop-blur-md">
+                Tuition Management
+              </span>
+            </div>
+
+            <div class="p-6 sm:p-7">
+              <h3 class="font-display font-bold text-2xl text-white mb-3 group-hover:text-violet-300 transition-colors">Quarkinophysics</h3>
+              <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                Specialized academic tuition portal built for streamlined physics education management, course delivery, and direct learner engagement, with responsive mobile-ready interfaces.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-7 pt-0 border-t border-violet-900/20 mt-auto flex items-center justify-between">
+            <span class="text-xs text-slate-400 font-heading">Production Deployed</span>
+            <span class="text-xs font-heading font-bold text-violet-400">Frontend / UI</span>
+          </div>
+        </div>
+
+        <!-- Project 3: Key-Aggregate Cryptosystem -->
+        <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between group">
+          <div>
+            <div class="relative w-full h-56 bg-onyx-900 overflow-hidden border-b border-violet-900/30">
+              <img 
+                src="https://i.ibb.co/HD5G4mmb/Key-Aggregate-Cloud-Security-Workflow.png" 
+                alt="Key-Aggregate Cryptosystem" 
+                class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                onerror="this.onerror=null; this.src='https://placehold.co/600x400/130d24/8b5cf6?text=Cryptosystem+Cloud+Storage';"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-onyx-950/90 via-onyx-950/30 to-transparent"></div>
+              <span class="absolute top-4 left-4 text-[11px] font-heading font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-violet-950/80 text-violet-300 border border-violet-500/40 backdrop-blur-md">
+                Cloud Security & R&D
+              </span>
+            </div>
+
+            <div class="p-6 sm:p-7">
+              <h3 class="font-display font-bold text-2xl text-white mb-3 group-hover:text-violet-300 transition-colors">Key-Aggregate Cryptosystem</h3>
+              <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                Researched and designed a novel public-key cryptosystem (KAC) enabling compact, flexible decryption keys for secure, scalable cloud storage data distribution.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-7 pt-0 border-t border-violet-900/20 mt-auto flex items-center justify-between">
+            <span class="text-xs text-slate-400 font-heading">Presented at NeCTAR 2023</span>
+            <span class="text-xs font-heading font-bold text-violet-400">Cloud Cryptography</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="research" class="pt-28">
+      <div class="mb-12">
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white mb-3 vibrant-heading-text">Academic Research & Papers</h2>
+        <p class="text-slate-400 max-w-xl text-sm leading-relaxed">Peer-reviewed publications and conference presentations in emerging computing fields.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="glass-card p-6 sm:p-8 rounded-3xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs text-violet-400 font-heading font-bold uppercase tracking-wider mb-3">
+              <span>Published Journal Paper</span>
+              <span>IJCER</span>
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-2">
+              Metaverse in Education: Culmination of Technologies
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+              Co-authored and published comprehensive research outlining the technological framework, immersive 3D/VR paradigms, and frontend visualization models of the Metaverse within higher learning systems.
+            </p>
+          </div>
+          <div class="text-xs text-slate-400 pt-4 border-t border-violet-900/20">
+            Published in the <span class="text-slate-200">International Journal of Computational Engineering Research (IJCER)</span>.
+          </div>
+        </div>
+
+        <div class="glass-card p-6 sm:p-8 rounded-3xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs text-violet-400 font-heading font-bold uppercase tracking-wider mb-3">
+              <span>Conference Presentation</span>
+              <span>ICETSSI 2022</span>
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-2">
+              The Present and Future of Computer Vision
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+              Authored and presented analytical research examining the evolution of image recognition models and real-time processing architectures. Awarded official Certificate of Appreciation.
+            </p>
+          </div>
+          <div class="text-xs text-slate-400 pt-4 border-t border-violet-900/20">
+            Presented at the <span class="text-slate-200">International Conference on Emerging Trends in Signals Systems & Info (ICETSSI 2022)</span>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="pt-28">
+      <div class="mb-12">
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white mb-3 vibrant-heading-text">Development & Hosting Architecture</h2>
+        <p class="text-slate-400 max-w-2xl text-sm leading-relaxed">
+          Transparent, complexity-based pricing structures alongside optimized cloud infrastructure management.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- Complexity Note & Website Development Pricing Card -->
+        <div class="glass-card p-8 rounded-3xl relative overflow-hidden flex flex-col justify-between border-violet-500/30">
+          <div class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-violet-600/15 blur-[80px] pointer-events-none"></div>
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-950/70 border border-violet-500/30 text-violet-300 text-xs font-heading font-bold uppercase tracking-wider mb-4">
+              <i class="fa-solid fa-sliders"></i> Dynamic Project Scoping
+            </div>
+            <h3 class="font-display font-bold text-2xl text-white mb-3">Website Development Pricing</h3>
+            
+            <div class="p-4 rounded-2xl bg-onyx-950/85 border border-violet-600/30 mb-6">
+              <p class="text-sm text-violet-200 font-medium leading-relaxed">
+                <i class="fa-solid fa-circle-info text-violet-400 mr-1.5"></i>
+                <strong>Notice:</strong> The cost of each website depends on the complication and depth of requirements, including component architecture, dynamic features, custom workflows, and page scale.
+              </p>
+            </div>
+
+            <p class="text-slate-300 text-sm leading-relaxed mb-6">
+              Every client project receives a customized scope assessment. Whether you require a sleek single-page launchpad, an educational portal, or a scalable application interface, quotes are tailored to the exact engineering complexity.
+            </p>
+
+            <ul class="space-y-3 text-xs text-slate-300 mb-6 font-medium">
+              <li class="flex items-center gap-2.5">
+                <i class="fa-solid fa-circle-check text-violet-400"></i> Bespoke UI/UX Design & Responsive Layouts
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i class="fa-solid fa-circle-check text-violet-400"></i> Interactive Features & Dynamic State Handling
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i class="fa-solid fa-circle-check text-violet-400"></i> Performance & SEO Audit Optimization
+              </li>
+            </ul>
+          </div>
+
+          <div class="pt-6 border-t border-violet-900/30">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=developerandroid027@gmail.com&su=Project%20Scope%20and%20Quote%20Inquiry" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-heading font-bold uppercase tracking-wider text-violet-300 hover:text-white transition-colors">
+              Request a Complexity Estimate <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hosting Fee Card: 216 Plan -->
+        <div class="glass-card p-8 rounded-3xl relative overflow-hidden flex flex-col justify-between border-violet-500/30">
+          <div class="absolute -right-16 -bottom-16 w-56 h-56 rounded-full bg-indigo-600/15 blur-[80px] pointer-events-none"></div>
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-950/70 border border-violet-500/30 text-violet-300 text-xs font-heading font-bold uppercase tracking-wider mb-4">
+              <i class="fa-solid fa-server"></i> Cloud Infrastructure
+            </div>
+            <h3 class="font-display font-bold text-2xl text-white mb-2">Hosting & Server Setup</h3>
+            
+            <div class="flex items-baseline gap-2 mb-4">
+              <span class="font-display font-bold text-4xl text-white tracking-tight">₹216</span>
+              <span class="text-xs text-violet-300 font-heading font-semibold uppercase tracking-wider">/ Hosting Fee Baseline</span>
+            </div>
+
+            <p class="text-slate-300 text-sm leading-relaxed mb-6">
+              Dependable, high-speed hosting management configured across leading global delivery networks. Devaki sets up end-to-end automated pipelines, domain routing, and secure certificates.
+            </p>
+
+            <div class="space-y-3 text-xs text-slate-300 mb-6 font-medium">
+              <div class="p-3.5 rounded-xl bg-onyx-900/90 border border-violet-900/30 flex items-center justify-between">
+                <span>Netlify CI/CD Continuous Deployment</span>
+                <span class="text-violet-400 font-bold font-heading uppercase">Included</span>
+              </div>
+              <div class="p-3.5 rounded-xl bg-onyx-900/90 border border-violet-900/30 flex items-center justify-between">
+                <span>GoDaddy DNS Records & Domain Link</span>
+                <span class="text-violet-400 font-bold font-heading uppercase">Included</span>
+              </div>
+              <div class="p-3.5 rounded-xl bg-onyx-900/90 border border-violet-900/30 flex items-center justify-between">
+                <span>Free Automated SSL / HTTPS Encryption</span>
+                <span class="text-violet-400 font-bold font-heading uppercase">Included</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-violet-900/30">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=developerandroid027@gmail.com&su=Hosting%20Setup%20Inquiry" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-heading font-bold uppercase tracking-wider text-violet-300 hover:text-white transition-colors">
+              Deploy Your Domain with Devaki <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="contact" class="pt-28 pb-16">
+      <div class="glass-card rounded-3xl p-8 sm:p-12 text-center max-w-3xl mx-auto border-violet-500/30">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-violet-600 to-indigo-600 flex items-center justify-center text-white text-2xl mx-auto mb-6 shadow-lg shadow-violet-600/30">
+          <i class="fa-solid fa-envelope"></i>
+        </div>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white mb-3 vibrant-heading-text">Initiate Direct Contact</h2>
+        <p class="text-slate-300 text-sm sm:text-base mb-8 max-w-lg mx-auto leading-relaxed">
+          Devaki is available for leadership consultations, software engineering collaborations, and technical advisory roles. All correspondence is handled directly via email.
+        </p>
+
+        <div class="p-6 rounded-2xl bg-onyx-950/75 border border-violet-800/40 inline-flex flex-col sm:flex-row items-center justify-between gap-4 w-full max-w-xl mx-auto mb-6">
+          <div class="text-left">
+            <span class="text-xs text-violet-400 font-heading font-bold uppercase tracking-wider block">Official Email Address</span>
+            <span class="text-base sm:text-lg font-bold text-white select-all">developerandroid027@gmail.com</span>
+          </div>
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=developerandroid027@gmail.com" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial px-4 py-2 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-xs font-heading font-bold uppercase tracking-wider transition-all">
+              Compose
+            </a>
+            <button id="copyEmailBtn" class="flex-1 sm:flex-initial px-4 py-2 rounded-xl bg-onyx-850 hover:bg-onyx-800 border border-violet-800/40 text-slate-300 text-xs font-heading font-bold uppercase tracking-wider transition-all">
+              Copy
+            </button>
+          </div>
+        </div>
+        <p id="copyStatusText" class="text-xs text-violet-400 font-medium h-4"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Short Resume Modal -->
+  <div id="resumeModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-onyx-950/85 backdrop-blur-md hidden transition-all">
+    <div class="glass-card max-w-2xl w-full rounded-3xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto border-violet-500/40 relative">
+      <div class="flex items-center justify-between pb-4 border-b border-violet-900/30 mb-6">
+        <div>
+          <h3 class="font-display font-bold text-2xl text-white">Devaki V K</h3>
+          <p class="text-xs text-violet-400 font-heading font-semibold">CTO @ SkillAura • Executive Profile</p>
+        </div>
+        <button id="closeResumeBtn" class="w-9 h-9 rounded-xl bg-onyx-900 border border-violet-800/40 text-slate-300 hover:text-white flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="space-y-6 text-sm text-slate-300">
+        <div>
+          <h4 class="text-xs uppercase font-heading font-bold text-violet-400 tracking-wider mb-2">Executive Summary</h4>
+          <p class="leading-relaxed">
+            Results-driven technology executive and developer holding a Bachelor of Computer Applications (BCA) from Calicut University (2018–2021). Advanced coursework in Master of Computer Applications (APJ Abdul Kalam Technological University, 2021–2023), subsequently embracing dedicated motherhood in 2024 before spearheading tech operations as CTO at SkillAura.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-xs uppercase font-heading font-bold text-violet-400 tracking-wider mb-2">Technical Core</h4>
+          <div class="grid grid-cols-2 gap-3 text-xs">
+            <div class="p-3.5 rounded-xl bg-onyx-900/80 border border-violet-900/30">
+              <span class="font-bold text-white block mb-1">Frontend Engineering</span>
+              HTML5, CSS3, JavaScript (DOM, ES6+), Component Architecture
+            </div>
+            <div class="p-3.5 rounded-xl bg-onyx-900/80 border border-violet-900/30">
+              <span class="font-bold text-white block mb-1">Languages & Logic</span>
+              C (Advanced), Java (OOP), Python (Scripting & Automation)
+            </div>
+            <div class="p-3.5 rounded-xl bg-onyx-900/80 border border-violet-900/30">
+              <span class="font-bold text-white block mb-1">Design & Prototyping</span>
+              Canva Content Suite, Wireframing, UI Layout Prototyping
+            </div>
+            <div class="p-3.5 rounded-xl bg-onyx-900/80 border border-violet-900/30">
+              <span class="font-bold text-white block mb-1">Cloud & Web Ops</span>
+              Netlify Automated Deployments, GoDaddy DNS, SSL Configuration
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-xs uppercase font-heading font-bold text-violet-400 tracking-wider mb-2">Academic & Certifications</h4>
+          <ul class="space-y-2.5 text-xs">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-award text-violet-400 mt-0.5"></i>
+              <span><strong>Certificate of Appreciation:</strong> "The Present & Future of Computer Vision" at ICETSSI 2022.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-book-open text-violet-400 mt-0.5"></i>
+              <span><strong>Published Paper:</strong> "Metaverse in Education" in IJCER.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-graduation-cap text-violet-400 mt-0.5"></i>
+              <span><strong>BCA Graduate:</strong> University of Calicut (2018–2021).</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-6 mt-6 border-t border-violet-900/30 flex items-center justify-between">
+        <span class="text-xs text-slate-400">Exclusive Contact: developerandroid027@gmail.com</span>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=developerandroid027@gmail.com" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-heading font-bold text-xs uppercase tracking-wider transition-all">
+          Inquire via Email
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive "Ask AI" Chatbot Widget -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <button id="openChatBtn" class="px-4 py-3 rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-heading font-bold text-xs uppercase tracking-wider shadow-xl shadow-violet-600/30 flex items-center gap-2.5 transition-transform hover:scale-105">
+      <i class="fa-solid fa-brain text-base"></i>
+      <span>Ask AI</span>
+    </button>
+
+    <div id="chatWindow" class="hidden absolute bottom-16 right-0 w-[340px] sm:w-[380px] rounded-3xl glass-card border-violet-500/30 overflow-hidden shadow-2xl flex flex-col transition-all">
+      <div class="p-4 bg-onyx-900/90 border-b border-violet-900/30 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center text-white text-sm font-bold">
+            <i class="fa-solid fa-sparkles"></i>
+          </div>
+          <div>
+            <h4 class="font-display font-bold text-white text-sm">Ask AI</h4>
+            <p class="text-[11px] text-violet-400 font-heading">Devaki V K Portfolio Intelligence</p>
+          </div>
+        </div>
+        <button id="closeChatBtn" class="text-slate-400 hover:text-white text-lg px-2">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div id="chatMessages" class="p-4 h-72 overflow-y-auto space-y-3 text-xs leading-relaxed">
+        <div class="p-3 rounded-2xl bg-onyx-950/80 border border-violet-900/30 text-slate-300">
+          Hello! I am Devaki V K's portfolio assistant. You can ask me about her role as CTO at SkillAura, technical specializations, research papers, hosting fee (₹216), or project pricing.
+        </div>
+      </div>
+
+      <div class="px-4 py-2 flex flex-wrap gap-1.5 border-t border-violet-900/20 bg-onyx-950/60">
+        <button class="chat-chip text-[10px] px-2.5 py-1 rounded-md bg-violet-950/70 hover:bg-violet-900/80 text-violet-300 border border-violet-800/40 font-heading font-medium">
+          How much is website development?
+        </button>
+        <button class="chat-chip text-[10px] px-2.5 py-1 rounded-md bg-violet-950/70 hover:bg-violet-900/80 text-violet-300 border border-violet-800/40 font-heading font-medium">
+          What is the hosting fee?
+        </button>
+        <button class="chat-chip text-[10px] px-2.5 py-1 rounded-md bg-violet-950/70 hover:bg-violet-900/80 text-violet-300 border border-violet-800/40 font-heading font-medium">
+          What is her role at SkillAura?
+        </button>
+      </div>
+
+      <div class="p-3 bg-onyx-900/90 border-t border-violet-900/30 flex items-center gap-2">
+        <input 
+          id="chatInput" 
+          type="text" 
+          placeholder="Ask a question..." 
+          class="flex-1 bg-onyx-950/80 border border-violet-900/40 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-violet-500"
+        />
+        <button id="sendChatBtn" class="px-3 py-2 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-xs font-bold transition-all">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-violet-900/20 py-8 relative z-10 bg-onyx-950/80">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <p>© 2026 Devaki V K. All rights reserved.</p>
+      <div class="flex items-center gap-4 text-slate-400">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=developerandroid027@gmail.com" target="_blank" rel="noopener noreferrer" class="hover:text-violet-400 transition-colors">developerandroid027@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Custom Cursor Logic
+    const cursorDot = document.getElementById('custom-cursor-dot');
+    const cursorRing = document.getElementById('custom-cursor-ring');
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.addEventListener('mousemove', (e) => {
+        cursorDot.style.left = `${e.clientX}px`;
+        cursorDot.style.top = `${e.clientY}px`;
+        cursorRing.animate({
+          left: `${e.clientX}px`,
+          top: `${e.clientY}px`
+        }, { duration: 300, fill: "forwards" });
+      });
+    }
+
+    // Mobile Drawer Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileDrawer.classList.toggle('hidden');
+    });
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => mobileDrawer.classList.add('hidden'));
+    });
+
+    // Resume Modal Logic
+    const resumeModal = document.getElementById('resumeModal');
+    const resumeModalBtn = document.getElementById('resumeModalBtn');
+    const mobileResumeBtn = document.getElementById('mobileResumeBtn');
+    const closeResumeBtn = document.getElementById('closeResumeBtn');
+
+    function openResume() { resumeModal.classList.remove('hidden'); }
+    function closeResume() { resumeModal.classList.add('hidden'); }
+
+    resumeModalBtn.addEventListener('click', openResume);
+    mobileResumeBtn.addEventListener('click', () => {
+      mobileDrawer.classList.add('hidden');
+      openResume();
+    });
+    closeResumeBtn.addEventListener('click', closeResume);
+    resumeModal.addEventListener('click', (e) => {
+      if (e.target === resumeModal) closeResume();
+    });
+
+    // Copy Email to Clipboard
+    const copyEmailBtn = document.getElementById('copyEmailBtn');
+    const copyStatusText = document.getElementById('copyStatusText');
+    copyEmailBtn.addEventListener('click', () => {
+      const emailToCopy = 'developerandroid027@gmail.com';
+      try {
+        // Fallback for iFrame environments where modern Clipboard API is blocked
+        const tempInput = document.createElement('input');
+        tempInput.value = emailToCopy;
+        tempInput.style.position = 'absolute';
+        tempInput.style.left = '-9999px';
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        
+        copyStatusText.textContent = 'Email address copied to clipboard!';
+        setTimeout(() => { copyStatusText.textContent = ''; }, 3000);
+      } catch (err) {
+        copyStatusText.textContent = 'Failed to copy email.';
+        setTimeout(() => { copyStatusText.textContent = ''; }, 3000);
+      }
+    });
+
+    // Ask AI Chatbot System
+    const openChatBtn = document.getElementById('openChatBtn');
+    const closeChatBtn = document.getElementById('closeChatBtn');
+    const chatWindow = document.getElementById('chatWindow');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendChatBtn = document.getElementById('sendChatBtn');
+
+    openChatBtn.addEventListener('click', () => chatWindow.classList.toggle('hidden'));
+    closeChatBtn.addEventListener('click', () => chatWindow.classList.add('hidden'));
+
+    function appendMessage(text, isUser = false) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = isUser 
+        ? 'p-3 rounded-2xl bg-violet-600/30 border border-violet-500/30 text-white ml-auto max-w-[85%]' 
+        : 'p-3 rounded-2xl bg-onyx-950/80 border border-violet-900/30 text-slate-300 mr-auto max-w-[85%]';
+      msgDiv.textContent = text;
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function generateAIResponse(query) {
+      const q = query.toLowerCase();
+      if (q.includes('cost') || q.includes('price') || q.includes('fee') || q.includes('complication') || q.includes('rate')) {
+        return "The cost of each website depends strictly on its complication, architectural depth, and specific feature set. Basic hosting fee setup is ₹216, including Netlify and GoDaddy configuration.";
+      }
+      if (q.includes('hosting') || q.includes('216') || q.includes('server')) {
+        return "Devaki provides complete hosting and deployment setup with a baseline hosting fee of ₹216, incorporating Netlify CI/CD, SSL encryption, and GoDaddy DNS management.";
+      }
+      if (q.includes('skillaura') || q.includes('cto') || q.includes('role')) {
+        return "Devaki serves as the Chief Technical Officer (CTO) at SkillAura, guiding the engineering roadmap, architecture, and technology execution for their educator training and EdTech initiatives.";
+      }
+      if (q.includes('contact') || q.includes('phone') || q.includes('reach') || q.includes('email')) {
+        return "Devaki is exclusively available via email for professional inquiries at developerandroid027@gmail.com.";
+      }
+      if (q.includes('research') || q.includes('paper') || q.includes('metaverse') || q.includes('vision')) {
+        return "Devaki has published 'Metaverse in Education' in the International Journal of Computational Engineering Research (IJCER) and presented 'The Present and Future of Computer Vision' at ICETSSI 2022, receiving a Certificate of Appreciation.";
+      }
+      if (q.includes('education') || q.includes('degree') || q.includes('mca') || q.includes('bca')) {
+        return "Devaki holds a Bachelor of Computer Applications (BCA) from Calicut University (2018–2021). She subsequently underwent the MCA program at APJ Abdul Kalam Technological University (2021–2023) before taking a dedicated family break for motherhood in 2024.";
+      }
+      if (q.includes('project') || q.includes('quarkino') || q.includes('cryptosystem')) {
+        return "Her signature projects include the SkillAura EdTech ecosystem, Quarkinophysics tuition platform, and her research project on Key-Aggregate Cryptosystems presented at NeCTAR 2023.";
+      }
+      return "Devaki V K specializes in app and website development, is a software developer, CTO at SkillAura, and hosting specialist proficient in HTML5, CSS3, JavaScript, Java, C, and Python. Contact her at developerandroid027@gmail.com.";
+    }
+
+    function handleChatSend() {
+      const text = chatInput.value.trim();
+      if (!text) return;
+      appendMessage(text, true);
+      chatInput.value = '';
+      setTimeout(() => {
+        const reply = generateAIResponse(text);
+        appendMessage(reply, false);
+      }, 400);
+    }
+
+    sendChatBtn.addEventListener('click', handleChatSend);
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleChatSend();
+    });
+
+    document.querySelectorAll('.chat-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        chatInput.value = chip.textContent.trim();
+        handleChatSend();
+      });
+    });
+  </script>
+</body>
+</html>
