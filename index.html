@@ -3,697 +3,2445 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Devaki V K | CTO, App Development, Website Development and Hosting</title>
-  
+  <title>Devaki V K — CTO @ SkillAura | MCA | App, Website Development & Hosting</title>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  
-  <!-- Modern Font Stack: Clash Display, Cabinet Grotesk & Plus Jakarta Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cabinet+Grotesk:wght@500;700;800;900&display=swap" rel="stylesheet">
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons (jsDelivr primary + unpkg fallback) -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js" onerror="this.onerror=null;this.src='https://unpkg.com/lucide@latest';"></script>
+
+  <!-- jsPDF for Direct PDF File Download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            display: ['"Clash Display"', '"Cabinet Grotesk"', 'sans-serif'],
-            heading: ['"Cabinet Grotesk"', 'sans-serif'],
-          },
-          colors: {
-            violet: {
-              400: '#a78bfa',
-              500: '#8b5cf6',
-              600: '#7c3aed',
-              700: '#6d28d9',
-            },
-            onyx: {
-              950: '#06040b',
-              900: '#0d0918',
-              850: '#140e24',
-              800: '#1c1533',
-            }
+            display: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
           }
         }
       }
-    }
+    };
   </script>
 
   <style>
-    /* Custom Modern Cursor */
-    @media (pointer: fine) {
-      body { cursor: none; }
-      #custom-cursor-dot, #custom-cursor-ring {
-        pointer-events: none;
-        position: fixed;
-        top: 0; left: 0;
-        z-index: 9999;
-        border-radius: 9999px;
-        transform: translate(-50%, -50%);
-        transition: opacity 0.2s ease, transform 0.15s ease;
-      }
-      #custom-cursor-dot {
-        width: 8px;
-        height: 8px;
-        background-color: #a78bfa;
-      }
-      #custom-cursor-ring {
-        width: 34px;
-        height: 34px;
-        border: 1.5px solid rgba(167, 139, 250, 0.45);
-        transition: width 0.2s, height 0.2s, border-color 0.2s;
-      }
-    }
-    @media (pointer: coarse) {
-      #custom-cursor-dot, #custom-cursor-ring { display: none; }
+    /* ==========================================
+       SIGNATURE AQUAMARINE LAGOON THEME
+       ========================================== */
+    :root {
+      --bg-primary: #02181e;
+      --bg-secondary: #05262f;
+      --bg-card: rgba(7, 44, 54, 0.68);
+      --bg-card-hover: rgba(11, 61, 74, 0.84);
+      --bg-glass: rgba(3, 27, 34, 0.82);
+      --text-primary: #f0fdfa;
+      --text-secondary: #ccfbf1;
+      --text-muted: #5eead4;
+      --accent-primary: #7fffd4;   /* Pure Aquamarine */
+      --accent-secondary: #00f5d4; /* Electric Aqua */
+      --accent-tertiary: #2dd4bf;  /* Lagoon Teal-Aqua */
+      --border-subtle: rgba(127, 255, 212, 0.24);
+      --border-glow: rgba(127, 255, 212, 0.72);
+      --badge-bg: rgba(127, 255, 212, 0.14);
+      --badge-text: #7fffd4;
+      --shadow-card: 0 20px 50px -15px rgba(1, 14, 18, 0.82);
     }
 
-    /* Ambient Tech Grid */
-    .bg-grid {
-      background-size: 48px 48px;
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    body {
+      background: linear-gradient(160deg, #02181e 0%, #052c36 45%, #073b47 75%, #021a20 100%);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
     }
 
-    /* Moving Gradient Background Glow */
-    .moving-bg-gradient {
-      background: linear-gradient(135deg, #06040b 0%, #1e0e3f 25%, #0a0515 50%, #15092a 75%, #06040b 100%);
-      background-size: 400% 400%;
-      animation: bgShift 20s ease-in-out infinite alternate;
+    /* Soft Aquamarine Caustic Glow Orbs */
+    @keyframes floatAquaOrb1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(55px, 35px) scale(1.1); }
     }
-    @keyframes bgShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    @keyframes floatAquaOrb2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-65px, 45px) scale(1.08); }
     }
 
-    /* Floating Orbs */
-    @keyframes floatOrb1 {
-      0%, 100% { transform: translate(0px, 0px) scale(1); }
-      50% { transform: translate(60px, -40px) scale(1.15); }
+    .aqua-orb-1 {
+      background: radial-gradient(circle, rgba(127, 255, 212, 0.22) 0%, transparent 70%);
+      animation: floatAquaOrb1 15s ease-in-out infinite;
     }
-    @keyframes floatOrb2 {
-      0%, 100% { transform: translate(0px, 0px) scale(1); }
-      50% { transform: translate(-50px, 50px) scale(1.08); }
-    }
-    .animate-orb-1 { animation: floatOrb1 16s ease-in-out infinite; }
-    .animate-orb-2 { animation: floatOrb2 20s ease-in-out infinite; }
-
-    /* Synchronized Ambient Text Animations */
-    @keyframes textGlow {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 300% 0%; }
-    }
-    
-    @keyframes auroraFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .aqua-orb-2 {
+      background: radial-gradient(circle, rgba(0, 245, 212, 0.18) 0%, transparent 70%);
+      animation: floatAquaOrb2 19s ease-in-out infinite;
     }
 
-    /* Main Name Animation */
-    .aurora-gradient-text {
-      background: linear-gradient(
-        135deg, #ffffff 0%, #c4b5fd 25%, #a78bfa 50%, #e9d5ff 75%, #818cf8 100%
-      );
-      background-size: 250% 250%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: auroraFlow 8s ease-in-out infinite;
-      text-shadow: 0 0 35px rgba(139, 92, 246, 0.35);
-    }
-
-    /* Vibrant Headings Animation */
-    .vibrant-heading-text {
-      background: linear-gradient(90deg, #ffffff, #c084fc, #38bdf8, #f472b6, #ffffff);
-      background-size: 300% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: textGlow 6s linear infinite;
-      display: inline-block;
-    }
-
-    /* Custom Animated Badges */
-    .animated-gradient-border {
+    /* Glassmorphic Aquamarine Cards with Cursor Spotlight */
+    .theme-card {
       position: relative;
-      border-radius: 0.375rem;
-      background: rgba(15, 11, 26, 0.85);
-      z-index: 1;
-    }
-    .animated-gradient-border::before {
-      content: '';
-      position: absolute;
-      inset: -1.5px;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #a855f7, #ec4899, #3b82f6, #a855f7);
-      background-size: 300% 100%;
-      z-index: -1;
-      animation: textGlow 3s linear infinite;
-    }
-    .animated-gradient-text {
-      background: linear-gradient(90deg, #d8b4fe, #f9a8d4, #93c5fd, #d8b4fe);
-      background-size: 300% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: textGlow 3s linear infinite;
-    }
-
-    /* Glassmorphism Cards */
-    .glass-card {
-      background: rgba(20, 14, 36, 0.65);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-card);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(139, 92, 246, 0.16);
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .glass-card:hover {
-      border-color: rgba(167, 139, 250, 0.45);
-      transform: translateY(-4px);
-      box-shadow: 0 16px 36px -10px rgba(109, 40, 217, 0.3);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.35s ease,
+                  background 0.35s ease,
+                  box-shadow 0.4s ease;
     }
 
-    /* Crisp High-Definition Image Rendering */
-    .hd-profile-img {
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
+    .theme-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(
+        500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(127, 255, 212, 0.20),
+        transparent 45%
+      );
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+      z-index: 0;
     }
+
+    .theme-card:hover::before {
+      opacity: 1;
+    }
+
+    .theme-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .theme-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-glow);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 55px -15px rgba(127, 255, 212, 0.28);
+    }
+
+    .theme-glass {
+      background: var(--bg-glass);
+      border-bottom: 1px solid var(--border-subtle);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    /* Animated Aquamarine Shimmer Text */
+    @keyframes textShimmer {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .accent-gradient-text {
+      background: linear-gradient(120deg, #ffffff 0%, #7fffd4 35%, #00f5d4 70%, #a7f3d0 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textShimmer 6s ease infinite;
+    }
+
+    .accent-gradient-bg {
+      background: linear-gradient(135deg, #7fffd4 0%, #00f5d4 55%, #14b8a6 100%);
+      color: #022026 !important;
+      font-weight: 700;
+    }
+
+    .theme-badge {
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* Scroll Reveal Animations */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-300 { transition-delay: 300ms; }
+
+    /* Hero Portrait Aquamarine Glow */
+    @keyframes portraitAquaPulse {
+      0%, 100% { box-shadow: 0 0 28px -4px rgba(127, 255, 212, 0.45), 0 0 55px -12px rgba(0, 245, 212, 0.30); }
+      50% { box-shadow: 0 0 45px 2px rgba(127, 255, 212, 0.75), 0 0 85px -6px rgba(0, 245, 212, 0.50); }
+    }
+    .portrait-glow-ring {
+      animation: portraitAquaPulse 5s ease-in-out infinite;
+    }
+
+    /* Infinite Marquee */
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 30s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+
+    /* Typewriter Cursor */
+    @keyframes blinkCaret {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .typewriter-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background-color: #7fffd4;
+      margin-left: 4px;
+      vertical-align: middle;
+      animation: blinkCaret 0.9s infinite;
+    }
+
+    /* Skill Progress Bar Fill */
+    .skill-bar-fill {
+      width: 0%;
+      background: linear-gradient(90deg, #7fffd4 0%, #00f5d4 60%, #2dd4bf 100%);
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Clean Print / Save PDF Stylesheet */
+    @media print {
+      body {
+        background: #02181e !important;
+        color: #f0fdfa !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      header,
+      footer,
+      #portfolioMainView,
+      #resumeActionToolbar,
+      #resumeSubTabsBar,
+      #aquaWaveCanvas,
+      .aqua-orb-1,
+      .aqua-orb-2,
+      #toastBanner {
+        display: none !important;
+      }
+      #resumeTabView {
+        display: block !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+      }
+      .resume-content-block {
+        display: block !important;
+        break-inside: avoid;
+        margin-bottom: 16px !important;
+      }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #02181e; }
+    ::-webkit-scrollbar-thumb { background: rgba(127, 255, 212, 0.35); border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #7fffd4; }
   </style>
 </head>
 
-<body class="moving-bg-gradient text-slate-200 font-sans selection:bg-violet-600 selection:text-white relative overflow-x-hidden antialiased">
+<body class="relative min-h-screen selection:bg-[#7fffd4]/30 selection:text-[#f0fdfa]">
 
-  <!-- Desktop Custom Cursor -->
-  <div id="custom-cursor-dot"></div>
-  <div id="custom-cursor-ring"></div>
+  <!-- Top Scroll Progress Bar -->
+  <div class="fixed top-0 left-0 right-0 h-[3px] z-50 pointer-events-none bg-transparent">
+    <div id="scrollProgressBar" class="h-full w-0 accent-gradient-bg shadow-[0_0_14px_rgba(127,255,212,0.95)] transition-[width] duration-75"></div>
+  </div>
 
-  <!-- Background Ambience & Grid -->
-  <div class="fixed inset-0 bg-grid pointer-events-none z-0 opacity-60"></div>
-  <div class="fixed top-[-10%] left-[-5%] w-[550px] h-[550px] rounded-full bg-violet-600/20 blur-[130px] pointer-events-none animate-orb-1 z-0"></div>
-  <div class="fixed bottom-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-indigo-600/15 blur-[150px] pointer-events-none animate-orb-2 z-0"></div>
+  <!-- Aquamarine Flowing Liquid Silk Waves & Bioluminescent Pearl Canvas Background -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <canvas id="aquaWaveCanvas" class="absolute inset-0 w-full h-full"></canvas>
+    <div class="aqua-orb-1 absolute -top-36 -left-36 w-[320px] sm:w-[520px] h-[320px] sm:h-[520px] rounded-full blur-3xl"></div>
+    <div class="aqua-orb-2 absolute bottom-0 -right-40 w-[360px] sm:w-[560px] h-[360px] sm:h-[560px] rounded-full blur-3xl"></div>
+  </div>
 
-  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-onyx-950/75 border-b border-violet-900/20 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      
-      <!-- Brand & Name -->
-      <a href="#hero" class="flex items-center gap-3.5 mr-10 md:mr-16 lg:mr-24 group">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-500 flex items-center justify-center text-white font-display font-bold shadow-lg shadow-violet-600/30 group-hover:scale-105 transition-transform">
-          D
+  <!-- Sticky Navigation Bar -->
+  <header class="sticky top-0 z-40 theme-glass transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between gap-3">
+      <!-- Brand Identity -->
+      <a href="#home" onclick="switchMainView('portfolio')" class="flex items-center gap-2.5 group focus:outline-none min-h-[44px] items-center">
+        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl accent-gradient-bg flex items-center justify-center font-display font-bold text-base sm:text-lg shadow-lg shadow-[#7fffd4]/25 shrink-0">
+          DV
         </div>
-        <span class="font-display font-bold text-xl tracking-wide text-white group-hover:text-violet-400 transition-colors">
-          Devaki V K
-        </span>
+        <div>
+          <div class="flex items-center gap-1.5 sm:gap-2">
+            <span class="font-display font-bold text-base sm:text-lg tracking-tight text-white">Devaki V K</span>
+            <span class="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full theme-badge font-semibold">CTO</span>
+          </div>
+          <p class="text-[11px] sm:text-xs text-[#a7f3d0]/80">devakivk.in • SkillAura</p>
+        </div>
       </a>
 
-      <!-- Desktop Tap Bar Menu -->
-      <nav class="hidden md:flex items-center gap-2">
-        <a href="#specializations" class="px-3.5 py-1.5 rounded-lg bg-onyx-900/70 border border-violet-900/30 text-xs font-heading font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:border-violet-500/50 hover:bg-violet-950/40 transition-all">
-          Specializations
-        </a>
-        <a href="#projects" class="px-3.5 py-1.5 rounded-lg bg-onyx-900/70 border border-violet-900/30 text-xs font-heading font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:border-violet-500/50 hover:bg-violet-950/40 transition-all">
-          Projects
-        </a>
-        <a href="#pricing" class="px-3.5 py-1.5 rounded-lg bg-onyx-900/70 border border-violet-900/30 text-xs font-heading font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:border-violet-500/50 hover:bg-violet-950/40 transition-all">
-          Pricing
-        </a>
-        <a href="#contact" class="px-3.5 py-1.5 rounded-lg bg-onyx-900/70 border border-violet-900/30 text-xs font-heading font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:border-violet-500/50 hover:bg-violet-950/40 transition-all">
-          Contact
-        </a>
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+        <a href="#home" onclick="switchMainView('portfolio')" class="px-3.5 py-2 rounded-lg text-sm font-medium text-[#ccfbf1] hover:text-[#7fffd4] hover:bg-[#7fffd4]/10 transition-colors">Home</a>
+        <a href="#specializations" onclick="switchMainView('portfolio')" class="px-3.5 py-2 rounded-lg text-sm font-medium text-[#ccfbf1] hover:text-[#7fffd4] hover:bg-[#7fffd4]/10 transition-colors">Specializations</a>
+        <a href="#projects" onclick="switchMainView('portfolio')" class="px-3.5 py-2 rounded-lg text-sm font-medium text-[#ccfbf1] hover:text-[#7fffd4] hover:bg-[#7fffd4]/10 transition-colors">Projects</a>
+        <a href="#services" onclick="switchMainView('portfolio')" class="px-3.5 py-2 rounded-lg text-sm font-medium text-[#ccfbf1] hover:text-[#7fffd4] hover:bg-[#7fffd4]/10 transition-colors">Services & Packages</a>
+        <button id="navResumeBtn" onclick="switchMainView('resume')" class="px-4 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-1.5 text-[#7fffd4] bg-[#7fffd4]/10 hover:bg-[#7fffd4]/20 border border-[#7fffd4]/35">
+          <i data-lucide="file-badge" class="w-4 h-4"></i>
+          Resume
+        </button>
       </nav>
 
-      <!-- Action Buttons -->
-      <div class="hidden md:flex items-center gap-3">
-        <a href="#resume" class="px-4 py-2 rounded-lg bg-onyx-850 hover:bg-violet-950/60 border border-violet-600/40 hover:border-violet-500 text-xs font-heading font-bold uppercase tracking-wider text-violet-300 transition-all shadow-sm flex items-center">
-          <i class="fa-solid fa-file-lines mr-1.5"></i> Resume
+      <!-- CTA & Mobile Menu Trigger (Optimized for Touch Taps min 44px) -->
+      <div class="flex items-center gap-2">
+        <a href="#contact" onclick="switchMainView('portfolio')" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold accent-gradient-bg shadow-lg shadow-[#7fffd4]/20 hover:opacity-95 transition-all">
+          <span>Let's Connect</span>
+          <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
         </a>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=developerandroid027@gmail.com" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-xs font-heading font-bold uppercase tracking-wider text-white shadow-md shadow-violet-600/30 transition-all">
-          Email Devaki
-        </a>
-      </div>
 
-      <!-- Mobile Hamburger Button -->
-      <button id="mobileMenuBtn" aria-label="Toggle Navigation" class="md:hidden text-slate-300 hover:text-white text-xl">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+        <button id="mobileMenuBtn" class="md:hidden p-3 rounded-xl theme-card text-[#7fffd4] min-w-[44px] min-h-[44px] flex items-center justify-center active:scale-95 transition-transform" aria-label="Open Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
     </div>
 
-    <!-- Mobile Drawer -->
-    <div id="mobileDrawer" class="hidden md:hidden px-6 pt-3 pb-6 bg-onyx-900/95 border-b border-violet-900/30 flex flex-col gap-2">
-      <a href="#specializations" class="py-2 px-3 rounded-lg bg-onyx-850 border border-violet-900/20 text-sm font-medium text-slate-300">Specializations</a>
-      <a href="#resume" class="py-2 px-3 rounded-lg bg-onyx-850 border border-violet-900/20 text-sm font-medium text-slate-300">Resume</a>
-      <a href="#projects" class="py-2 px-3 rounded-lg bg-onyx-850 border border-violet-900/20 text-sm font-medium text-slate-300">Projects</a>
-      <a href="#pricing" class="py-2 px-3 rounded-lg bg-onyx-850 border border-violet-900/20 text-sm font-medium text-slate-300">Pricing & Hosting</a>
-      <a href="#contact" class="py-2 px-3 rounded-lg bg-onyx-850 border border-violet-900/20 text-sm font-medium text-slate-300">Contact</a>
-      <div class="pt-2 flex flex-col gap-2">
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=developerandroid027@gmail.com" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-sm font-bold text-center">
-          Email Devaki
-        </a>
-      </div>
+    <!-- Mobile Menu Drawer (Smooth Touch Dropdown) -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-[#7fffd4]/20 px-4 py-4 space-y-2.5 bg-[#031d24]/98 backdrop-blur-2xl shadow-2xl">
+      <a href="#home" onclick="switchMainView('portfolio'); document.getElementById('mobileMenu').classList.add('hidden');" class="block px-4 py-3 rounded-xl text-base font-medium text-[#ccfbf1] hover:bg-[#7fffd4]/10 active:bg-[#7fffd4]/20 min-h-[44px] flex items-center">Home</a>
+      <a href="#specializations" onclick="switchMainView('portfolio'); document.getElementById('mobileMenu').classList.add('hidden');" class="block px-4 py-3 rounded-xl text-base font-medium text-[#ccfbf1] hover:bg-[#7fffd4]/10 active:bg-[#7fffd4]/20 min-h-[44px] flex items-center">Specializations</a>
+      <a href="#projects" onclick="switchMainView('portfolio'); document.getElementById('mobileMenu').classList.add('hidden');" class="block px-4 py-3 rounded-xl text-base font-medium text-[#ccfbf1] hover:bg-[#7fffd4]/10 active:bg-[#7fffd4]/20 min-h-[44px] flex items-center">Projects</a>
+      <a href="#services" onclick="switchMainView('portfolio'); document.getElementById('mobileMenu').classList.add('hidden');" class="block px-4 py-3 rounded-xl text-base font-medium text-[#ccfbf1] hover:bg-[#7fffd4]/10 active:bg-[#7fffd4]/20 min-h-[44px] flex items-center">Services & Packages</a>
+      <button onclick="switchMainView('resume'); document.getElementById('mobileMenu').classList.add('hidden');" class="w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-[#7fffd4] bg-[#7fffd4]/15 border border-[#7fffd4]/40 flex items-center gap-2.5 min-h-[44px]">
+        <i data-lucide="file-badge" class="w-5 h-5"></i>
+        Open Resume Tab (MCA)
+      </button>
+      <a href="#contact" onclick="switchMainView('portfolio'); document.getElementById('mobileMenu').classList.add('hidden');" class="block px-4 py-3 rounded-xl text-base font-semibold accent-gradient-bg min-h-[44px] flex items-center justify-center gap-2 mt-2">
+        <span>Let's Connect</span>
+        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+      </a>
     </div>
   </header>
 
-  <main class="relative z-10 pt-32 pb-24 max-w-7xl mx-auto px-6">
-    
+  <!-- ==========================================
+       MAIN PORTFOLIO VIEW
+       ========================================== -->
+  <main id="portfolioMainView" class="relative z-10">
+
     <!-- HERO SECTION -->
-    <section id="hero" class="min-h-[80vh] flex flex-col lg:flex-row items-center justify-between gap-12 pt-6">
-      
-      <div class="lg:w-7/12 flex flex-col items-start">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-950/60 border border-violet-500/30 text-violet-400 text-xs font-heading font-bold uppercase tracking-widest mb-6 shadow-[0_0_20px_rgba(139,92,246,0.15)]">
-          <span class="w-2 h-2 rounded-full bg-violet-400 animate-pulse"></span>
-          Leadership & Technical Portfolio
-        </div>
+    <section id="home" class="pt-12 pb-16 sm:pt-20 sm:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
-        <!-- Animated Gradient Heading for Name -->
-        <h1 class="font-display font-bold text-5xl sm:text-6xl lg:text-7xl tracking-tight leading-[1.05] mb-5 aurora-gradient-text">
-          DEVAKI V K
-        </h1>
-
-        <!-- Animated Colorful Highlight Badges for Designations -->
-        <div class="flex flex-wrap items-center gap-3 mb-6 text-sm font-heading font-bold tracking-wide">
-          <div class="animated-gradient-border px-4 py-1.5 shadow-[0_0_20px_rgba(139,92,246,0.35)]">
-            <span class="animated-gradient-text text-xs uppercase tracking-widest">CTO @ SkillAura</span>
+        <!-- Left Column: Intro & CTAs -->
+        <div class="lg:col-span-7 space-y-6 reveal-up">
+          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full theme-badge text-xs font-medium tracking-wide">
+            <span class="w-2 h-2 rounded-full bg-[#7fffd4] animate-ping"></span>
+            <span class="w-2 h-2 rounded-full bg-[#7fffd4] -ml-4"></span>
+            <span>CTO @ SkillAura • MCA Graduate • Cloud & Security</span>
           </div>
-          
-          <div class="animated-gradient-border px-4 py-1.5 shadow-[0_0_20px_rgba(139,92,246,0.35)]">
-            <span class="animated-gradient-text text-xs uppercase tracking-widest">App Development</span>
+
+          <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white">
+            <span class="accent-gradient-text">Devaki V K</span>
+          </h1>
+
+          <!-- Animated Typewriter Specialization Line -->
+          <div class="flex items-center gap-2 text-base sm:text-xl font-mono text-[#7fffd4] min-h-[2rem]">
+            <i data-lucide="terminal" class="w-5 h-5 shrink-0 text-[#00f5d4]"></i>
+            <span id="typewriterText">Cross-Platform iOS & Android App Development</span><span class="typewriter-cursor"></span>
           </div>
-          
-          <div class="animated-gradient-border px-4 py-1.5 shadow-[0_0_20px_rgba(139,92,246,0.35)]">
-            <span class="animated-gradient-text text-xs uppercase tracking-widest">Website Development and Hosting</span>
+
+          <p class="text-base sm:text-lg leading-relaxed max-w-2xl text-[#ccfbf1]/90">
+            At <span class="text-white font-semibold">SkillAura</span>, I serve as the <span class="text-[#7fffd4] font-semibold">Chief Technology Officer (CTO)</span>, leading technology strategy, product innovation, and platform development. With a <span class="text-white font-semibold">Master of Computer Applications (MCA)</span>, my work spans website development &amp; hosting, mobile app development, and cryptographic cloud security.
+          </p>
+
+          <!-- Primary Action Buttons -->
+          <div class="flex flex-wrap items-center gap-3.5 pt-2">
+            <a href="#projects" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-semibold text-sm accent-gradient-bg shadow-xl shadow-[#7fffd4]/20 hover:scale-[1.02] transition-all">
+              <span>Explore My Work</span>
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+            </a>
+            <button onclick="switchMainView('resume')" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm theme-card text-[#7fffd4] border-[#7fffd4]/40 hover:border-[#7fffd4]">
+              <i data-lucide="file-badge" class="w-4 h-4"></i>
+              <span>Open Resume Tab</span>
+            </button>
+            <a href="#contact" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-sm theme-card text-[#ccfbf1] hover:text-white">
+              <span>Let's Connect</span>
+              <i data-lucide="send" class="w-4 h-4 text-[#7fffd4]"></i>
+            </a>
           </div>
-        </div>
 
-        <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mb-8 font-normal">
-          Devaki V K drives technological innovation as Chief Technical Officer at SkillAura, architecting modern digital platforms and intuitive user experiences. Specializing in highly responsive mobile applications, full-stack website development, scalable domain hosting, and high-performance server deployments.
-        </p>
-
-        <div class="flex flex-wrap items-center gap-4">
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=developerandroid027@gmail.com" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-heading font-bold text-sm uppercase tracking-wider shadow-lg shadow-violet-600/30 flex items-center gap-2 transition-all">
-            <i class="fa-solid fa-envelope"></i> Email Devaki
-          </a>
-          <a href="#projects" class="px-6 py-3 rounded-xl bg-onyx-850 hover:bg-onyx-800 border border-violet-900/40 text-slate-200 font-heading font-bold text-sm uppercase tracking-wider hover:border-violet-500/40 transition-all">
-            View Projects
-          </a>
-        </div>
-      </div>
-
-      <!-- Developer Profile Visual -->
-      <div class="lg:w-5/12 flex justify-center">
-        <div class="relative group">
-          <div class="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-violet-600 via-indigo-600 to-violet-400 opacity-30 group-hover:opacity-60 blur-xl transition-all duration-700"></div>
-          <div class="relative rounded-3xl overflow-hidden border border-violet-500/25 bg-onyx-900/90 p-3 shadow-2xl">
-            <img 
-              src="https://imgh.in/host/ofmej7" 
-              alt="Devaki V K" 
-              class="hd-profile-img rounded-2xl w-[320px] sm:w-[380px] h-[460px] object-cover object-top shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]"
-              onerror="this.onerror=null; this.src='https://placehold.co/400x520/17112b/a78bfa?text=Devaki+V+K';"
-            />
-            <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-onyx-950/85 backdrop-blur-md border border-violet-500/20">
-              <p class="font-display font-bold text-white text-base tracking-wide">Devaki V K</p>
-              <p class="text-xs text-violet-400 font-heading font-semibold">CTO @ SkillAura • App, Website Development and Hosting</p>
+          <!-- Quick Highlight Metrics -->
+          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-[#7fffd4]/20">
+            <div>
+              <div class="font-display text-2xl sm:text-3xl font-bold text-white">CTO</div>
+              <div class="text-xs sm:text-sm text-[#a7f3d0]/80">Leadership @ SkillAura</div>
+            </div>
+            <div>
+              <div class="font-display text-2xl sm:text-3xl font-bold accent-gradient-text">MCA</div>
+              <div class="text-xs sm:text-sm text-[#a7f3d0]/80">Master's Qualification</div>
+            </div>
+            <div>
+              <div class="font-display text-2xl sm:text-3xl font-bold text-white">24/7</div>
+              <div class="text-xs sm:text-sm text-[#a7f3d0]/80">Managed Cloud &amp; Hosting</div>
             </div>
           </div>
         </div>
+
+        <!-- Right Column: Profile Portrait Card -->
+        <div class="lg:col-span-5 flex justify-center reveal-up delay-200">
+          <div id="heroPortraitCard" class="theme-card portrait-glow-ring rounded-3xl p-5 sm:p-6 relative overflow-hidden w-full max-w-md transition-transform duration-300">
+            <div class="relative rounded-2xl overflow-hidden border border-[#7fffd4]/35 bg-[#032028] aspect-[4/5] shadow-2xl group">
+              <img
+                id="heroProfileImg"
+                src="https://i.ibb.co/991Kkh1S/Whats-App-Image-2026-10-04-at-10-29-40-AM.jpg"
+                alt="Devaki V K"
+                class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              />
+              <!-- Gradient Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-[#02181e]/95 via-[#02181e]/25 to-transparent pointer-events-none"></div>
+
+              <!-- Top Right Badge -->
+              <div class="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-[#02181e]/80 backdrop-blur-md border border-[#7fffd4]/40 text-[11px] font-mono text-[#7fffd4] flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#7fffd4] animate-pulse"></span>
+                MCA • CTO
+              </div>
+
+              <!-- Bottom Caption Badge -->
+              <div class="absolute bottom-3.5 left-3.5 right-3.5 p-4 rounded-xl bg-[#03222b]/90 backdrop-blur-md border border-[#7fffd4]/30">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="font-display font-bold text-white text-lg leading-tight">Devaki V K</p>
+                    <p class="text-xs text-[#7fffd4] font-medium mt-0.5">CTO @ SkillAura • App, Website Development and Hosting</p>
+                  </div>
+                  <span class="w-9 h-9 rounded-lg bg-[#7fffd4]/15 border border-[#7fffd4]/40 flex items-center justify-center text-[#7fffd4] shrink-0">
+                    <i data-lucide="shield-check" class="w-4 h-4"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- SPECIALIZATIONS SECTION -->
-    <section id="specializations" class="pt-24">
-      <div class="mb-12">
-        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white mb-3 vibrant-heading-text">Core Specializations</h2>
-        <p class="text-slate-400 max-w-xl text-sm leading-relaxed">Proven competencies spanning application development, robust website creation, and secure domain/cloud deployment pipelines.</p>
+    <!-- INFINITE AQUAMARINE CREDENTIALS & TECH MARQUEE -->
+    <div class="py-4 border-y border-[#7fffd4]/20 bg-[#031f27]/70 backdrop-blur-md overflow-hidden">
+      <div class="animate-marquee flex items-center gap-10 text-xs sm:text-sm font-mono text-[#ccfbf1]">
+        <span class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-[#7fffd4]"></i> Master of Computer Applications (MCA)</span>
+        <span class="text-[#7fffd4]/40">•</span>
+        <span class="flex items-center gap-2"><i data-lucide="cpu" class="w-4 h-4 text-[#00f5d4]"></i> Chief Technology Officer @ SkillAura</span>
+        <span class="text-[#7fffd4]/40">•</span>
+        <span class="flex items-center gap-2"><i data-lucide="globe" class="w-4 h-4 text-[#7fffd4]"></i> Website Development &amp; Managed Cloud Hosting</span>
+        <span class="text-[#7fffd4]/40">•</span>
+        <span class="flex items-center gap-2"><i data-lucide="smartphone" class="w-4 h-4 text-[#00f5d4]"></i> Cross-Platform iOS &amp; Android App Development</span>
+        <span class="text-[#7fffd4]/40">•</span>
+        <span class="flex items-center gap-2"><i data-lucide="key-round" class="w-4 h-4 text-[#7fffd4]"></i> Key-Aggregate Cryptosystem Research</span>
+        <span class="text-[#7fffd4]/40">•</span>
+        <span class="flex items-center gap-2"><i data-lucide="atom" class="w-4 h-4 text-[#00f5d4]"></i> Quarkinophysics Interactive Learning</span>
+        <span class="text-[#7fffd4]/40">•</span>
+        <!-- Duplicate set for seamless loop -->
+        <span class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-[#7fffd4]"></i> Master of Computer Applications (MCA)</span>
+        <span class="text-[#7fffd4]/40">•</span>
+        <span class="flex items-center gap-2"><i data-lucide="cpu" class="w-4 h-4 text-[#00f5d4]"></i> Chief Technology Officer @ SkillAura</span>
+        <span class="text-[#7fffd4]/40">•</span>
+        <span class="flex items-center gap-2"><i data-lucide="globe" class="w-4 h-4 text-[#7fffd4]"></i> Website Development &amp; Managed Cloud Hosting</span>
+        <span class="text-[#7fffd4]/40">•</span>
+        <span class="flex items-center gap-2"><i data-lucide="smartphone" class="w-4 h-4 text-[#00f5d4]"></i> Cross-Platform iOS &amp; Android App Development</span>
+        <span class="text-[#7fffd4]/40">•</span>
+        <span class="flex items-center gap-2"><i data-lucide="key-round" class="w-4 h-4 text-[#7fffd4]"></i> Key-Aggregate Cryptosystem Research</span>
+      </div>
+    </div>
+
+    <!-- CORE SPECIALIZATIONS -->
+    <section id="specializations" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 reveal-up">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest px-3 py-1 rounded-full theme-badge">What I Do Best</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-3 text-white">Core Specializations</h2>
+        </div>
+        <p class="text-sm sm:text-base max-w-md text-[#ccfbf1]/85">
+          Combining academic depth (MCA) with hands-on executive engineering to deliver resilient digital platforms.
+        </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <!-- Web Dev Card -->
-        <div class="glass-card p-8 rounded-2xl">
-          <div class="w-12 h-12 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-400 text-xl mb-6">
-            <i class="fa-solid fa-desktop"></i>
-          </div>
-          <h3 class="font-display font-bold text-xl text-white mb-2">Website Development and Hosting</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-4">
-            Advanced craftsmanship in modern web technologies coupled with expert domain management. From engineering responsive frontends to robust VPS/Vercel server deployments.
-          </p>
-          <div class="flex flex-wrap gap-1.5 text-xs text-violet-300 font-heading font-medium">
-            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">React / Next.js</span>
-            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">Domain DNS</span>
-            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">Vercel / VPS</span>
-          </div>
-        </div>
-
-        <!-- App Dev Card -->
-        <div class="glass-card p-8 rounded-2xl">
-          <div class="w-12 h-12 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-400 text-xl mb-6">
-            <i class="fa-solid fa-mobile-screen-button"></i>
-          </div>
-          <h3 class="font-display font-bold text-xl text-white mb-2">App Development</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-4">
-            Rigorous cross-platform and native mobile application architectures. Building fluid, high-performance mobile experiences optimized for user retention.
-          </p>
-          <div class="flex flex-wrap gap-1.5 text-xs text-violet-300 font-heading font-medium">
-            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">iOS & Android</span>
-            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">Flutter</span>
-            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">React Native</span>
-          </div>
-        </div>
-
-        <!-- Cloud & Security Card -->
-        <div class="glass-card p-8 rounded-2xl">
-          <div class="w-12 h-12 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-400 text-xl mb-6">
-            <i class="fa-solid fa-shield-halved"></i>
-          </div>
-          <h3 class="font-display font-bold text-xl text-white mb-2">Cloud Security</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-4">
-            Specialized implementation of robust cryptographic frameworks. Ensuring backend systems and hosted applications remain secure against modern breach vectors.
-          </p>
-          <div class="flex flex-wrap gap-1.5 text-xs text-violet-300 font-heading font-medium">
-            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">Cryptography</span>
-            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">Access Control</span>
-            <span class="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-800/40">AWS Security</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- MINI RESUME SECTION -->
-    <section id="resume" class="pt-32">
-      <div class="mb-12">
-        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white mb-3 vibrant-heading-text">Mini Resume</h2>
-        <p class="text-slate-400 max-w-xl text-sm leading-relaxed">A quick snapshot of my academic background and current developmental focus.</p>
-      </div>
-
-      <div class="glass-card p-8 md:p-12 rounded-3xl relative overflow-hidden shadow-[0_0_40px_rgba(139,92,246,0.1)]">
-        <!-- Decorative Glow -->
-        <div class="absolute top-0 right-0 w-64 h-64 bg-violet-600/10 rounded-full blur-[80px] pointer-events-none z-0"></div>
-        <div class="absolute bottom-0 left-0 w-64 h-64 bg-indigo-600/10 rounded-full blur-[80px] pointer-events-none z-0"></div>
-        
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10">
-          
-          <!-- Education & Core Status -->
-          <div class="space-y-10 flex flex-col justify-center">
-            
-            <!-- Qualification -->
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-10 h-10 rounded-lg bg-violet-500/20 border border-violet-500/40 flex items-center justify-center">
-                  <i class="fa-solid fa-graduation-cap text-violet-400 text-lg"></i>
-                </div>
-                <h3 class="font-heading font-bold text-sm text-slate-300 uppercase tracking-widest">Highest Qualification</h3>
-              </div>
-              <p class="text-2xl font-display font-bold text-white">Bachelor of Computer Application</p>
-              <p class="text-violet-300 text-sm font-medium mt-1 uppercase tracking-wide">has a bachelor's degree in computer applications</p> 
+        <!-- Card 1 -->
+        <div class="theme-card rounded-3xl p-7 flex flex-col justify-between group reveal-up delay-100">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-[#7fffd4]/15 border border-[#7fffd4]/35 flex items-center justify-center text-[#7fffd4] mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="globe" class="w-7 h-7"></i>
             </div>
-
-            <!-- Current Role -->
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-10 h-10 rounded-lg bg-indigo-500/20 border border-indigo-500/40 flex items-center justify-center">
-                  <i class="fa-solid fa-briefcase text-indigo-400 text-lg"></i>
-                </div>
-                <h3 class="font-heading font-bold text-sm text-slate-300 uppercase tracking-widest">Current Role</h3>
-              </div>
-              <p class="text-2xl font-display font-bold text-white">Chief Technical Officer</p>
-              <p class="text-indigo-300 text-sm font-medium mt-1 uppercase tracking-wide">@ SkillAura</p>
-              <p class="text-slate-400 text-sm mt-3 leading-relaxed">
-                Leading the overarching technical architecture and development pipelines for EdTech innovations, specializing in fluid cross-platform applications and scalable web solutions.
-              </p>
-            </div>
-            
-          </div>
-
-          <!-- Currently Doing (Notebook Context) -->
-          <div class="bg-onyx-900/60 rounded-2xl p-8 border border-violet-500/20 shadow-inner">
-             <div class="flex items-center gap-3 mb-6">
-                <div class="w-10 h-10 rounded-lg bg-pink-500/20 border border-pink-500/40 flex items-center justify-center">
-                  <i class="fa-solid fa-laptop-code text-pink-400 text-lg"></i>
-                </div>
-                <h3 class="font-heading font-bold text-sm text-slate-300 uppercase tracking-widest">Currently Building</h3>
-              </div>
-              
-              <h4 class="font-display font-bold text-3xl text-white mb-2">Quarkinophysics</h4>
-              <p class="text-pink-300 text-xs font-heading font-bold uppercase tracking-widest mb-5">Digital Physics Education Platform</p>
-              
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                Engineering a comprehensive digital platform tailored specifically to revolutionize physics education. Building an interactive ecosystem that provides immediate access to critical study materials and automated assistance. Features include:
-              </p>
-              
-              <ul class="space-y-4 text-sm text-slate-300 font-medium">
-                <li class="flex items-start gap-3">
-                  <i class="fa-solid fa-check-circle text-violet-400 mt-0.5 text-base"></i> 
-                  <span>Interactive study notes, reference materials, and video lectures.</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <i class="fa-solid fa-check-circle text-violet-400 mt-0.5 text-base"></i> 
-                  <span><strong class="text-white">KaTeX Integration</strong> for rendering complex mathematical and physics formulas flawlessly.</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <i class="fa-solid fa-check-circle text-violet-400 mt-0.5 text-base"></i> 
-                  <span>Integrated databases for model question papers and exams.</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <i class="fa-solid fa-check-circle text-violet-400 mt-0.5 text-base"></i> 
-                  <span>A custom <strong class="text-white">AI doubt-clearing chatbot</strong> designed specifically to assist students with physics queries.</span>
-                </li>
-              </ul>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS SECTION -->
-    <section id="projects" class="pt-32">
-      <div class="mb-12">
-        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white mb-3 vibrant-heading-text">Featured Projects</h2>
-        <p class="text-slate-400 max-w-xl text-sm leading-relaxed">A showcase of production-ready platforms, learning applications, and cryptographic systems.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-        <!-- SkillAura Project -->
-        <div class="glass-card rounded-2xl overflow-hidden group">
-          <a href="https://skill-aura.in" target="_blank" rel="noopener noreferrer" class="block h-56 bg-onyx-950 relative overflow-hidden">
-            <div class="absolute inset-0 bg-violet-600/10 group-hover:bg-transparent transition-colors z-10"></div>
-            <img 
-              src="https://i.ibb.co/qY8Ng2tX/skill-aura-logo-3.jpg" 
-              alt="SkillAura EdTech Platform" 
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-            />
-          </a>
-          <div class="p-8">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="px-2.5 py-1 rounded bg-violet-900/50 text-violet-300 text-xs font-heading font-bold uppercase tracking-wider">EdTech Web Platform</span>
-              <span class="text-slate-500 text-xs"><i class="fa-solid fa-calendar-days mr-1"></i> 2026</span>
-            </div>
-            <a href="https://skill-aura.in" target="_blank" rel="noopener noreferrer" class="hover:text-violet-400 transition-colors">
-              <h3 class="font-display font-bold text-2xl text-white mb-2 flex items-center gap-2">
-                SkillAura Platform <i class="fa-solid fa-arrow-up-right-from-square text-sm text-violet-400"></i>
-              </h3>
-            </a>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-              A comprehensive educational technology ecosystem designed to streamline learning management. Engineered the core framework to handle concurrent user sessions, course delivery, and interactive learning modules.
+            <h3 class="font-display text-xl font-bold mb-3 text-white">Website Development &amp; Hosting</h3>
+            <p class="text-sm leading-relaxed text-[#ccfbf1]/85 mb-6">
+              End-to-end development and reliable hosting solutions with modern frameworks, custom domain management, SSL security, and scalable cloud deployment.
             </p>
           </div>
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-[#7fffd4]/20">
+            <span class="text-xs font-mono px-2.5 py-1 rounded-lg bg-[#02181e]/70 text-[#7fffd4]">React / Next.js</span>
+            <span class="text-xs font-mono px-2.5 py-1 rounded-lg bg-[#02181e]/70 text-[#7fffd4]">Cloud VPS</span>
+            <span class="text-xs font-mono px-2.5 py-1 rounded-lg bg-[#02181e]/70 text-[#7fffd4]">SSL / DNS</span>
+          </div>
         </div>
 
-        <!-- Quarkinophysics Project -->
-        <div class="glass-card rounded-2xl overflow-hidden group">
-          <div class="h-56 bg-onyx-950 relative overflow-hidden flex items-center justify-center p-6">
-            <div class="absolute inset-0 bg-violet-600/10 group-hover:bg-transparent transition-colors z-10"></div>
-            <img 
-              src="https://i.ibb.co/3mkn9Jqt/Quarkino-LOGO.png" 
-              alt="Quarkino Physics Platform Logo" 
-              class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700 relative z-0"
-            />
-          </div>
-          <div class="p-8">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="px-2.5 py-1 rounded bg-indigo-900/50 text-indigo-300 text-xs font-heading font-bold uppercase tracking-wider">Academic App</span>
-              <span class="text-slate-500 text-xs"><i class="fa-solid fa-calendar-days mr-1"></i> 2026</span>
+        <!-- Card 2 -->
+        <div class="theme-card rounded-3xl p-7 flex flex-col justify-between group reveal-up delay-200">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-[#00f5d4]/15 border border-[#00f5d4]/35 flex items-center justify-center text-[#00f5d4] mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="smartphone" class="w-7 h-7"></i>
             </div>
-            <h3 class="font-display font-bold text-2xl text-white mb-2">Quarkinophysics</h3>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-              A specialized digital platform built for advanced physics education. Features complex mathematical rendering (KaTeX), secure document hosting for study materials, and an embedded doubt-clearing AI chatbot interface.
+            <h3 class="font-display text-xl font-bold mb-3 text-white">App Development</h3>
+            <p class="text-sm leading-relaxed text-[#ccfbf1]/85 mb-6">
+              Cross-platform mobile apps for Android and iOS with smooth performance, intuitive interfaces, offline resilience, and modern architecture.
             </p>
           </div>
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-[#7fffd4]/20">
+            <span class="text-xs font-mono px-2.5 py-1 rounded-lg bg-[#02181e]/70 text-[#00f5d4]">Android &amp; iOS</span>
+            <span class="text-xs font-mono px-2.5 py-1 rounded-lg bg-[#02181e]/70 text-[#00f5d4]">Flutter / RN</span>
+            <span class="text-xs font-mono px-2.5 py-1 rounded-lg bg-[#02181e]/70 text-[#00f5d4]">REST / GraphQL</span>
+          </div>
         </div>
 
-        <!-- Crypto System Project -->
-        <div class="glass-card rounded-2xl overflow-hidden group md:col-span-2">
-          <div class="h-64 sm:h-80 bg-onyx-950 relative overflow-hidden">
-            <div class="absolute inset-0 bg-violet-600/10 group-hover:bg-transparent transition-colors z-10"></div>
-            <img 
-              src="https://i.ibb.co/HD5G4mmb/Key-Aggregate-Cloud-Security-Workflow.png" 
-              alt="Key Aggregate Cloud Security Workflow" 
-              class="w-full h-full object-contain bg-onyx-900 group-hover:scale-105 transition-transform duration-700"
-            />
-          </div>
-          <div class="p-8 lg:p-10 flex flex-col md:flex-row gap-8 items-start justify-between">
-            <div class="md:w-2/3">
-              <div class="flex items-center gap-3 mb-3">
-                <span class="px-2.5 py-1 rounded bg-pink-900/40 text-pink-300 text-xs font-heading font-bold uppercase tracking-wider">Research & Security</span>
-              </div>
-              <h3 class="font-display font-bold text-2xl text-white mb-3">Key-Aggregate Cryptosystem</h3>
-              <p class="text-slate-400 text-sm leading-relaxed">
-                Spearheaded research and implementation of a scalable cryptographic architecture for secure data sharing in cloud environments. This system aggregates multiple encryption keys into a single, compact key for efficient, decentralized delegation of access rights, severely minimizing storage overhead and securing vulnerable data nodes against breach vectors.
-              </p>
+        <!-- Card 3 -->
+        <div class="theme-card rounded-3xl p-7 flex flex-col justify-between group reveal-up delay-300">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-[#2dd4bf]/15 border border-[#2dd4bf]/35 flex items-center justify-center text-[#7fffd4] mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="lock-keyhole" class="w-7 h-7"></i>
             </div>
-            <div class="md:w-1/3 flex flex-wrap gap-2">
-               <span class="px-3 py-1.5 rounded-lg bg-onyx-800 border border-violet-900/30 text-xs font-heading font-medium text-slate-300">Data Encryption</span>
-               <span class="px-3 py-1.5 rounded-lg bg-onyx-800 border border-violet-900/30 text-xs font-heading font-medium text-slate-300">Cloud Security</span>
-               <span class="px-3 py-1.5 rounded-lg bg-onyx-800 border border-violet-900/30 text-xs font-heading font-medium text-slate-300">Access Control</span>
-            </div>
+            <h3 class="font-display text-xl font-bold mb-3 text-white">Cloud Security</h3>
+            <p class="text-sm leading-relaxed text-[#ccfbf1]/85 mb-6">
+              Advanced cryptographic systems for secure data sharing in cloud storage, specializing in compact key-aggregate encryption and access control.
+            </p>
           </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- PRICING & HOSTING SECTION -->
-    <section id="pricing" class="pt-32">
-      <div class="mb-12">
-        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white mb-3 vibrant-heading-text">Services & Packages</h2>
-        <p class="text-slate-400 max-w-xl text-sm leading-relaxed">Scalable, transparent solutions tailored for startups and businesses. Every package is engineered for performance.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <!-- Web Plan (Highlighted) -->
-        <div class="glass-card p-8 rounded-3xl relative flex flex-col border border-violet-500/50 transform md:-translate-y-4 shadow-[0_0_30px_rgba(139,92,246,0.15)]">
-          <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1 bg-gradient-to-r from-violet-600 to-indigo-600 rounded-full text-[10px] font-bold uppercase tracking-widest text-white shadow-lg">Most Requested</div>
-          <div class="mb-6 mt-2">
-            <h3 class="font-display font-bold text-2xl text-white mb-2">Web & Hosting</h3>
-            <p class="text-slate-400 text-sm">Perfect for modern brands & portfolios.</p>
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-[#7fffd4]/20">
+            <span class="text-xs font-mono px-2.5 py-1 rounded-lg bg-[#02181e]/70 text-[#7fffd4]">Key-Aggregate Crypto</span>
+            <span class="text-xs font-mono px-2.5 py-1 rounded-lg bg-[#02181e]/70 text-[#7fffd4]">Zero-Trust</span>
           </div>
-          <div class="mb-8">
-            <span class="text-3xl font-bold text-white">Custom Setup</span>
-          </div>
-          <ul class="flex flex-col gap-4 text-sm text-slate-300 mb-8 flex-grow">
-            <li class="flex items-start gap-3"><i class="fa-solid fa-check text-violet-400 mt-1"></i> Full-Stack Web Development</li>
-            <li class="flex items-start gap-3"><i class="fa-solid fa-check text-violet-400 mt-1"></i> Custom Domain Setup & DNS</li>
-            <li class="flex items-start gap-3"><i class="fa-solid fa-check text-violet-400 mt-1"></i> Fast Vercel / VPS Hosting</li>
-            <li class="flex items-start gap-3"><i class="fa-solid fa-check text-violet-400 mt-1"></i> SSL & Foundational Security</li>
-          </ul>
-          <a href="#contact" class="w-full py-3 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-center font-heading font-bold text-white transition-all shadow-lg shadow-violet-600/30">Get a Quote</a>
-        </div>
-
-        <!-- App Plan -->
-        <div class="glass-card p-8 rounded-3xl relative flex flex-col">
-          <div class="mb-6">
-            <h3 class="font-display font-bold text-2xl text-white mb-2">Mobile Application</h3>
-            <p class="text-slate-400 text-sm">High-performance iOS & Android.</p>
-          </div>
-          <div class="mb-8">
-            <span class="text-3xl font-bold text-white">Custom Build</span>
-          </div>
-          <ul class="flex flex-col gap-4 text-sm text-slate-300 mb-8 flex-grow">
-            <li class="flex items-start gap-3"><i class="fa-solid fa-check text-violet-400 mt-1"></i> Cross-Platform App Architecture</li>
-            <li class="flex items-start gap-3"><i class="fa-solid fa-check text-violet-400 mt-1"></i> Intuitive UI / UX Design</li>
-            <li class="flex items-start gap-3"><i class="fa-solid fa-check text-violet-400 mt-1"></i> Backend & API Integration</li>
-            <li class="flex items-start gap-3"><i class="fa-solid fa-check text-violet-400 mt-1"></i> App Store Deployment Guidance</li>
-          </ul>
-          <a href="#contact" class="w-full py-3 rounded-xl bg-onyx-800 hover:bg-violet-950 border border-violet-500/30 text-center font-heading font-bold text-white transition-all">Get a Quote</a>
-        </div>
-
-        <!-- Enterprise Plan -->
-        <div class="glass-card p-8 rounded-3xl relative flex flex-col">
-          <div class="mb-6">
-            <h3 class="font-display font-bold text-2xl text-white mb-2">Digital Ecosystem</h3>
-            <p class="text-slate-400 text-sm">Full-scale infrastructure & consulting.</p>
-          </div>
-          <div class="mb-8">
-            <span class="text-3xl font-bold text-white">Enterprise</span>
-          </div>
-          <ul class="flex flex-col gap-4 text-sm text-slate-300 mb-8 flex-grow">
-            <li class="flex items-start gap-3"><i class="fa-solid fa-check text-violet-400 mt-1"></i> Web + Mobile App Integration</li>
-            <li class="flex items-start gap-3"><i class="fa-solid fa-check text-violet-400 mt-1"></i> Advanced Cloud Architecture</li>
-            <li class="flex items-start gap-3"><i class="fa-solid fa-check text-violet-400 mt-1"></i> Custom Cryptography & Security</li>
-            <li class="flex items-start gap-3"><i class="fa-solid fa-check text-violet-400 mt-1"></i> CTO-level Strategy Consulting</li>
-          </ul>
-          <a href="#contact" class="w-full py-3 rounded-xl bg-onyx-800 hover:bg-violet-950 border border-violet-500/30 text-center font-heading font-bold text-white transition-all">Get a Quote</a>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="pt-32 pb-12">
-      <div class="glass-card rounded-3xl p-10 md:p-16 text-center relative overflow-hidden">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-gradient-to-r from-transparent via-violet-500 to-transparent"></div>
-        
-        <h2 class="font-display font-bold text-4xl text-white mb-4 vibrant-heading-text">Let's Build Together</h2>
-        <p class="text-slate-300 text-base max-w-2xl mx-auto mb-10">
-          Looking to develop a cutting-edge mobile app, launch a highly scalable website, or need expert guidance on hosting architectures? Let's connect and discuss how we can turn your digital vision into reality.
+    <!-- FEATURED PROJECTS -->
+    <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 reveal-up">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest px-3 py-1 rounded-full theme-badge">Innovation &amp; Research</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-3 text-white">Featured Projects</h2>
+        </div>
+        <p class="text-sm sm:text-base max-w-md text-[#ccfbf1]/85">
+          A showcase of production-ready platforms, learning applications, and cryptographic cloud systems.
         </p>
-        
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=developerandroid027@gmail.com" target="_blank" rel="noopener noreferrer" class="px-8 py-4 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-heading font-bold text-sm uppercase tracking-wider shadow-xl shadow-violet-600/30 transition-all flex items-center gap-2 group w-full sm:w-auto justify-center">
-            <i class="fa-solid fa-paper-plane group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"></i>
-            Send an Email
-          </a>
-          <button onclick="navigator.clipboard.writeText('developerandroid027@gmail.com'); alert('Email developerandroid027@gmail.com copied to clipboard!')" class="px-8 py-4 rounded-xl bg-onyx-850 hover:bg-onyx-800 border border-violet-900/40 text-slate-200 font-heading font-bold text-sm uppercase tracking-wider hover:border-violet-500/40 transition-all flex items-center gap-2 w-full sm:w-auto justify-center">
-            <i class="fa-regular fa-copy"></i> Copy Email
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+        <!-- Project 1: SkillAura Platform -->
+        <div class="theme-card rounded-3xl overflow-hidden flex flex-col justify-between group reveal-up delay-100">
+          <div>
+            <div class="h-52 bg-gradient-to-br from-[#063b47] via-[#042831] to-[#02181e] p-6 relative overflow-hidden flex items-center justify-center border-b border-[#7fffd4]/20">
+              <div class="relative z-10 flex flex-col items-center text-center">
+                <div class="w-20 h-20 rounded-2xl bg-[#02181e]/90 border-2 border-[#7fffd4]/50 p-1.5 flex items-center justify-center mb-3 shadow-xl shadow-[#7fffd4]/25 group-hover:scale-110 transition-transform overflow-hidden">
+                  <img
+                    src="https://i.ibb.co/qY8Ng2tX/skill-aura-logo-3.jpg"
+                    alt="SkillAura Platform Logo"
+                    class="w-full h-full object-contain rounded-xl"
+                  />
+                </div>
+                <span class="text-xs font-mono uppercase tracking-widest text-[#7fffd4]">EdTech Web Platform</span>
+                <h4 class="font-display font-bold text-lg text-white mt-1">Concurrent Learning Ecosystem</h4>
+              </div>
+            </div>
+
+            <div class="p-7">
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <div class="flex items-center gap-2.5">
+                  <img
+                    src="https://i.ibb.co/qY8Ng2tX/skill-aura-logo-3.jpg"
+                    alt="SkillAura"
+                    class="w-7 h-7 rounded-lg object-cover border border-[#7fffd4]/40"
+                  />
+                  <h3 class="font-display text-2xl font-bold text-white">SkillAura Platform</h3>
+                </div>
+                <span class="text-xs font-mono px-2.5 py-1 rounded-full theme-badge">EdTech • CTO</span>
+              </div>
+              <p class="text-sm leading-relaxed text-[#ccfbf1]/85 mb-6">
+                A comprehensive educational technology ecosystem designed to streamline learning management. Engineered the core framework to handle concurrent user sessions, course delivery, and interactive learning modules.
+              </p>
+            </div>
+          </div>
+
+          <div class="px-7 pb-7 pt-4 border-t border-[#7fffd4]/20 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-xs font-mono text-[#a7f3d0]">
+              <span>Full-Stack LMS</span> • <span>Cloud Scale</span>
+            </div>
+            <button onclick="openProjectModal('skillaura')" class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#7fffd4] hover:text-white transition-colors">
+              <span>Platform Preview</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project 2: Quarkinophysics -->
+        <div class="theme-card rounded-3xl overflow-hidden flex flex-col justify-between group reveal-up delay-200">
+          <div>
+            <div class="h-52 bg-gradient-to-br from-[#063845] via-[#042630] to-[#02181e] p-6 relative overflow-hidden flex items-center justify-center border-b border-[#7fffd4]/20">
+              <div class="relative z-10 flex flex-col items-center text-center">
+                <div class="w-20 h-20 rounded-2xl bg-[#02181e]/90 border-2 border-[#7fffd4]/50 p-1.5 flex items-center justify-center mb-3 shadow-xl shadow-[#7fffd4]/25 group-hover:scale-110 transition-transform overflow-hidden">
+                  <img
+                    src="https://i.ibb.co/7x2NdS8p/Quarkino-LOGO.png"
+                    alt="Quarkinophysics Logo"
+                    onerror="this.onerror=null;this.src='https://placehold.co/160x160/02181e/7fffd4?text=Quarkino';"
+                    class="w-full h-full object-contain rounded-xl"
+                  />
+                </div>
+                <span class="text-xs font-mono uppercase tracking-widest text-[#7fffd4]">Academic App &amp; AI Chatbot</span>
+                <h4 class="font-display font-bold text-lg text-white mt-1">KaTeX &amp; Physics Simulation Lab</h4>
+              </div>
+            </div>
+
+            <div class="p-7">
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <div class="flex items-center gap-2.5">
+                  <img
+                    src="https://i.ibb.co/7x2NdS8p/Quarkino-LOGO.png"
+                    alt="Quarkinophysics"
+                    onerror="this.onerror=null;this.src='https://placehold.co/80x80/02181e/7fffd4?text=QP';"
+                    class="w-7 h-7 rounded-lg object-contain bg-[#02181e] p-0.5 border border-[#7fffd4]/40"
+                  />
+                  <h3 class="font-display text-2xl font-bold text-white">Quarkinophysics</h3>
+                </div>
+                <span class="text-xs font-mono px-2.5 py-1 rounded-full theme-badge">Academic App</span>
+              </div>
+              <p class="text-sm leading-relaxed text-[#ccfbf1]/85 mb-6">
+                A specialized digital platform built for advanced physics education. Features complex mathematical rendering (KaTeX), model exam databases, video lectures, and an embedded AI doubt-clearing chatbot.
+              </p>
+            </div>
+          </div>
+
+          <div class="px-7 pb-7 pt-4 border-t border-[#7fffd4]/20 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-xs font-mono text-[#a7f3d0]">
+              <span>KaTeX</span> • <span>AI Doubt Bot</span>
+            </div>
+            <button onclick="openProjectModal('quark')" class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#7fffd4] hover:text-white transition-colors">
+              <span>Interactive Preview</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project 3: Key-Aggregate Cryptosystem -->
+        <div class="theme-card rounded-3xl overflow-hidden flex flex-col justify-between group reveal-up delay-300">
+          <div>
+            <div class="h-52 bg-gradient-to-br from-[#073d49] via-[#042730] to-[#02181e] p-6 relative overflow-hidden flex items-center justify-center border-b border-[#7fffd4]/20">
+              <div class="relative z-10 flex flex-col items-center text-center">
+                <div class="w-20 h-20 rounded-2xl bg-[#02181e]/90 border-2 border-[#00f5d4]/50 p-1.5 flex items-center justify-center mb-3 shadow-xl shadow-[#00f5d4]/25 group-hover:scale-110 transition-transform overflow-hidden">
+                  <img
+                    src="https://i.ibb.co/HD5G4mmb/Key-Aggregate-Cloud-Security-Workflow.png"
+                    alt="Key-Aggregate Cryptosystem Workflow"
+                    onerror="this.onerror=null;this.src='https://placehold.co/160x160/02181e/00f5d4?text=KAC';"
+                    class="w-full h-full object-cover rounded-xl"
+                  />
+                </div>
+                <span class="text-xs font-mono uppercase tracking-widest text-[#00f5d4]">Research &amp; Security</span>
+                <h4 class="font-display font-bold text-lg text-white mt-1">Constant-Size Aggregate Key Delegation</h4>
+              </div>
+            </div>
+
+            <div class="p-7">
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <div class="flex items-center gap-2.5">
+                  <img
+                    src="https://i.ibb.co/HD5G4mmb/Key-Aggregate-Cloud-Security-Workflow.png"
+                    alt="Key-Aggregate Cryptosystem"
+                    onerror="this.onerror=null;this.src='https://placehold.co/80x80/02181e/00f5d4?text=KAC';"
+                    class="w-7 h-7 rounded-lg object-cover bg-[#02181e] p-0.5 border border-[#00f5d4]/40"
+                  />
+                  <h3 class="font-display text-2xl font-bold text-white">Key-Aggregate Cryptosystem</h3>
+                </div>
+                <span class="text-xs font-mono px-2.5 py-1 rounded-full theme-badge">Cloud Security</span>
+              </div>
+              <p class="text-sm leading-relaxed text-[#ccfbf1]/85 mb-6">
+                Aggregates multiple encryption keys into a single, compact key for decentralized delegation of access rights—minimizing storage overhead and securing cloud data nodes against breach vectors.
+              </p>
+            </div>
+          </div>
+
+          <div class="px-7 pb-7 pt-4 border-t border-[#7fffd4]/20 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-xs font-mono text-[#a7f3d0]">
+              <span>Data Encryption</span> • <span>Access Control</span>
+            </div>
+            <button onclick="openProjectModal('kac')" class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#7fffd4] hover:text-white transition-colors">
+              <span>Architecture Demo</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES & PACKAGES -->
+    <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-14 reveal-up">
+        <span class="text-xs font-mono uppercase tracking-widest px-3 py-1 rounded-full theme-badge">Solutions Tailored For You</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold mt-3 text-white">Services &amp; Packages</h2>
+        <p class="text-sm sm:text-base mt-3 text-[#ccfbf1]/85">
+          I provide end-to-end <span class="text-[#7fffd4] font-semibold">Website Development, Mobile App Development, and Hosting</span> services. Choose a package that fits your needs, or reach out for a custom solution!
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-7 items-stretch">
+        <!-- Starter Package -->
+        <div class="theme-card rounded-3xl p-7 flex flex-col justify-between reveal-up delay-100">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono uppercase tracking-wider px-3 py-1 rounded-lg bg-[#02181e]/70 text-[#a7f3d0]">Starter</span>
+              <i data-lucide="rocket" class="w-5 h-5 text-[#7fffd4]"></i>
+            </div>
+            <h3 class="font-display text-2xl font-bold mb-2 text-white">Starter Website Package</h3>
+            <p class="text-xs text-[#a7f3d0]/85 mb-6">Ideal for personal brands, portfolios, and emerging businesses getting online rapidly.</p>
+
+            <ul class="space-y-3.5 text-sm mb-8 text-[#ccfbf1]">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#7fffd4] shrink-0 mt-0.5"></i>
+                <span>Responsive 3–5 Page Website</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#7fffd4] shrink-0 mt-0.5"></i>
+                <span>Free Domain &amp; Basic Hosting (1 Year)</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#7fffd4] shrink-0 mt-0.5"></i>
+                <span>SSL Certificate &amp; Basic Security</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#7fffd4] shrink-0 mt-0.5"></i>
+                <span>Email &amp; Contact Form Integration</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#7fffd4] shrink-0 mt-0.5"></i>
+                <span>1 Month Free Support</span>
+              </li>
+            </ul>
+          </div>
+
+          <button onclick="openQuoteModal('Starter Website Package')" class="w-full py-3.5 px-5 rounded-xl font-semibold text-sm theme-card border border-[#7fffd4]/40 text-[#7fffd4] hover:bg-[#7fffd4] hover:text-[#02181e] transition-all flex items-center justify-center gap-2">
+            <span>Get a Quote</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Business App & Web Package (Highlighted) -->
+        <div class="theme-card rounded-3xl p-7 flex flex-col justify-between relative border-2 border-[#7fffd4] shadow-2xl shadow-[#7fffd4]/20 md:-translate-y-2 reveal-up delay-200">
+          <div class="absolute -top-3.5 right-6 px-3.5 py-1 rounded-full accent-gradient-bg text-[11px] font-mono uppercase tracking-wider shadow-lg">
+            Most Popular
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono uppercase tracking-wider px-3 py-1 rounded-lg theme-badge">Business Growth</span>
+              <i data-lucide="layers" class="w-5 h-5 text-[#7fffd4]"></i>
+            </div>
+            <h3 class="font-display text-2xl font-bold mb-2 text-white">Business App &amp; Web Package</h3>
+            <p class="text-xs text-[#a7f3d0]/85 mb-6">Complete web + mobile ecosystem engineered for growing startups and businesses.</p>
+
+            <ul class="space-y-3.5 text-sm mb-8 text-[#ccfbf1]">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#7fffd4] shrink-0 mt-0.5"></i>
+                <span>Dynamic Website (Up to 10 Pages or Custom Design)</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#7fffd4] shrink-0 mt-0.5"></i>
+                <span>Android &amp; iOS Hybrid App</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#7fffd4] shrink-0 mt-0.5"></i>
+                <span>Cloud Hosting &amp; Domain Setup</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#7fffd4] shrink-0 mt-0.5"></i>
+                <span>Payment Gateway / API Integrations</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#7fffd4] shrink-0 mt-0.5"></i>
+                <span>3 Months Free Maintenance</span>
+              </li>
+            </ul>
+          </div>
+
+          <button onclick="openQuoteModal('Business App & Web Package')" class="w-full py-3.5 px-5 rounded-xl font-semibold text-sm accent-gradient-bg shadow-lg shadow-[#7fffd4]/25 hover:opacity-95 transition-all flex items-center justify-center gap-2">
+            <span>Get a Quote</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Enterprise Custom Solution -->
+        <div class="theme-card rounded-3xl p-7 flex flex-col justify-between reveal-up delay-300">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono uppercase tracking-wider px-3 py-1 rounded-lg bg-[#02181e]/70 text-[#00f5d4]">Enterprise</span>
+              <i data-lucide="shield-alert" class="w-5 h-5 text-[#00f5d4]"></i>
+            </div>
+            <h3 class="font-display text-2xl font-bold mb-2 text-white">Enterprise Custom Solution</h3>
+            <p class="text-xs text-[#a7f3d0]/85 mb-6">Full-scale cloud architecture, custom mobile apps, and cryptographic security.</p>
+
+            <ul class="space-y-3.5 text-sm mb-8 text-[#ccfbf1]">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#00f5d4] shrink-0 mt-0.5"></i>
+                <span>Full-Scale Web Application + Mobile Apps (iOS &amp; Android)</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#00f5d4] shrink-0 mt-0.5"></i>
+                <span>Custom Cloud Architecture &amp; Security</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#00f5d4] shrink-0 mt-0.5"></i>
+                <span>Advanced Admin Dashboard &amp; Analytics</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#00f5d4] shrink-0 mt-0.5"></i>
+                <span>Dedicated Hosting + 99.9% Uptime Guarantee</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#00f5d4] shrink-0 mt-0.5"></i>
+                <span>1 Year Priority Support &amp; Maintenance</span>
+              </li>
+            </ul>
+          </div>
+
+          <button onclick="openQuoteModal('Enterprise Custom Solution')" class="w-full py-3.5 px-5 rounded-xl font-semibold text-sm theme-card border border-[#7fffd4]/40 text-[#7fffd4] hover:bg-[#7fffd4] hover:text-[#02181e] transition-all flex items-center justify-center gap-2">
+            <span>Get a Quote</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </button>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="mt-20 pt-8 border-t border-violet-900/30 text-center">
-      <p class="text-slate-500 text-sm font-heading font-medium flex items-center justify-center gap-2">
-        &copy; 2026 Devaki V K. Developed with <i class="fa-solid fa-heart text-violet-500"></i> in India.
-      </p>
-    </footer>
+    <!-- LET'S CONNECT SECTION -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+      <div class="theme-card rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden reveal-up">
+        <div class="max-w-2xl mx-auto space-y-6">
+          <span class="text-xs font-mono uppercase tracking-widest px-3.5 py-1.5 rounded-full theme-badge">Available for Projects &amp; Consulting</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-white">Let’s Connect</h2>
+          <p class="text-base sm:text-lg text-[#ccfbf1]/90">
+            Interested in working together or discussing an idea? Reach out directly via Gmail, open a tailored project quote, or copy my contact address below.
+          </p>
+
+          <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+            <button onclick="openQuoteModal('General Collaboration Inquiry')" class="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl font-semibold text-sm accent-gradient-bg shadow-xl shadow-[#7fffd4]/25 hover:scale-105 transition-transform">
+              <i data-lucide="mail" class="w-4 h-4"></i>
+              <span>Send Email via Gmail</span>
+            </button>
+
+            <button onclick="copyEmailAddress()" class="inline-flex items-center gap-2.5 px-6 py-4 rounded-xl font-semibold text-sm theme-card text-[#7fffd4] hover:text-white">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+              <span id="copyEmailText">Copy Email Address</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main>
 
+  <!-- ==========================================
+       DEDICATED RESUME TAB VIEW
+       ========================================== -->
+  <section id="resumeTabView" class="hidden relative z-10 py-8 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto min-h-[80vh]">
+    <!-- Top Action Bar -->
+    <div id="resumeActionToolbar" class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3.5 mb-6 sm:mb-8 pb-5 border-b border-[#7fffd4]/25">
+      <button onclick="switchMainView('portfolio')" class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold theme-card text-[#7fffd4] hover:text-white min-h-[44px]">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span>Back to Portfolio</span>
+      </button>
+
+      <div class="flex flex-wrap items-center gap-2.5">
+        <!-- Live Owner Security Alert Inbox Button -->
+        <button
+          id="ownerAlertsInboxBtn"
+          onclick="openOwnerSecurityInboxModal()"
+          class="hidden items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold theme-card text-[#00f5d4] border border-[#00f5d4]/50 hover:bg-[#00f5d4] hover:text-[#02181e] transition-all shadow-lg shadow-[#00f5d4]/15 min-h-[44px] flex-1 sm:flex-none"
+          title="Owner Security Alert Center"
+        >
+          <i data-lucide="bell" class="w-4 h-4 animate-bounce"></i>
+          <span>Security Alerts <span id="alertBadgeCount" class="px-1.5 py-0.2 rounded-full bg-[#00f5d4] text-[#02181e] text-[10px] font-mono">0</span></span>
+        </button>
+
+        <!-- Owner-Only Print / Save PDF Button (Hidden for visitors by default) -->
+        <button
+          id="ownerPrintPdfBtn"
+          onclick="triggerGoogleSecurityPinPrompt()"
+          class="hidden items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold theme-card text-[#7fffd4] border border-[#7fffd4]/50 hover:bg-[#7fffd4] hover:text-[#02181e] transition-all shadow-lg shadow-[#7fffd4]/15 min-h-[44px] flex-1 sm:flex-none"
+          title="Owner Only: Download Full CV as PDF"
+        >
+          <i data-lucide="download" class="w-4 h-4"></i>
+          <span id="ownerPrintPdfBtnText">Print / Save PDF</span>
+        </button>
+        <button onclick="openQuoteModal('CTO / Technical Consultation')" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold accent-gradient-bg shadow-lg shadow-[#7fffd4]/20 min-h-[44px] flex-1 sm:flex-none">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          <span>Contact Devaki</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Executive Resume Header Card -->
+    <div class="theme-card rounded-3xl p-6 sm:p-10 mb-8 relative overflow-hidden">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <!-- Profile Photo inside Resume Header -->
+          <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-2 border-[#7fffd4]/50 shadow-xl shrink-0 bg-[#032028]">
+            <img
+              src="https://i.ibb.co/991Kkh1S/Whats-App-Image-2026-10-04-at-10-29-40-AM.jpg"
+              alt="Devaki V K"
+              class="w-full h-full object-cover object-top"
+            />
+          </div>
+          <div>
+            <div class="flex flex-wrap items-center gap-2.5 mb-2">
+              <span class="text-xs font-mono uppercase tracking-widest px-3 py-1 rounded-full theme-badge">Curriculum Vitae</span>
+              <button
+                type="button"
+                onclick="toggleOwnerMode()"
+                title="Owner toggle for Print / Save PDF"
+                class="text-xs font-mono px-3 py-1 rounded-full bg-[#7fffd4]/15 text-[#7fffd4] border border-[#7fffd4]/35 hover:border-[#7fffd4] transition-all cursor-pointer select-none"
+              >
+                MCA Qualified
+              </button>
+            </div>
+            <h1 class="font-display text-3xl sm:text-5xl font-bold text-white">Devaki V K</h1>
+            <p class="text-base sm:text-lg text-[#7fffd4] font-medium mt-1">
+              Chief Technology Officer (CTO) @ SkillAura • Master of Computer Applications (MCA)
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:items-end text-sm text-[#ccfbf1] space-y-1.5 font-mono">
+          <div class="flex items-center gap-2">
+            <i data-lucide="globe" class="w-4 h-4 text-[#7fffd4]"></i>
+            <span>https://www.devakivk.in</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i data-lucide="graduation-cap" class="w-4 h-4 text-[#00f5d4]"></i>
+            <span>Qualification: MCA</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i data-lucide="map-pin" class="w-4 h-4 text-[#7fffd4]"></i>
+            <span>India • Remote Worldwide</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resume Sub-Navigation Tabs -->
+      <div id="resumeSubTabsBar" class="flex flex-wrap items-center gap-2 mt-8 pt-6 border-t border-[#7fffd4]/20">
+        <button onclick="filterResumeSection('all')" data-resume-filter="all" class="resume-subtab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold accent-gradient-bg shadow-md transition-all">
+          Full CV Overview
+        </button>
+        <button onclick="filterResumeSection('experience')" data-resume-filter="experience" class="resume-subtab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[#02181e]/70 text-[#ccfbf1] hover:text-white border border-[#7fffd4]/25 transition-all">
+          Experience &amp; Leadership
+        </button>
+        <button onclick="filterResumeSection('education')" data-resume-filter="education" class="resume-subtab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[#02181e]/70 text-[#ccfbf1] hover:text-white border border-[#7fffd4]/25 transition-all">
+          Education (MCA)
+        </button>
+        <button onclick="filterResumeSection('skills')" data-resume-filter="skills" class="resume-subtab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[#02181e]/70 text-[#ccfbf1] hover:text-white border border-[#7fffd4]/25 transition-all">
+          Technical Arsenal
+        </button>
+        <button onclick="filterResumeSection('research')" data-resume-filter="research" class="resume-subtab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[#02181e]/70 text-[#ccfbf1] hover:text-white border border-[#7fffd4]/25 transition-all">
+          Projects &amp; Research
+        </button>
+      </div>
+    </div>
+
+    <!-- Resume Content Blocks -->
+    <div class="space-y-6">
+      <!-- 1. EDUCATION (MCA) -->
+      <div data-resume-block="education" class="resume-content-block theme-card rounded-3xl p-7 sm:p-8">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-11 h-11 rounded-xl bg-[#7fffd4]/15 border border-[#7fffd4]/35 flex items-center justify-center text-[#7fffd4]">
+            <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <span class="text-xs font-mono uppercase tracking-wider text-[#7fffd4]">Academic Background</span>
+            <h2 class="font-display text-2xl font-bold text-white">Education &amp; Qualifications</h2>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#02181e]/60 border border-[#7fffd4]/25">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+            <h3 class="font-display text-xl font-bold text-white">Master of Computer Applications (MCA)</h3>
+            <span class="text-xs font-mono px-3 py-1 rounded-full theme-badge w-fit">Postgraduate Degree</span>
+          </div>
+          <p class="text-sm text-[#ccfbf1]/90 leading-relaxed mb-4">
+            Advanced postgraduate specialization in software architecture, cloud computing infrastructure, mobile application engineering, database management systems, and applied cryptography.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs font-mono px-3 py-1 rounded-lg bg-[#042630] text-[#7fffd4]">Advanced Software Engineering</span>
+            <span class="text-xs font-mono px-3 py-1 rounded-lg bg-[#042630] text-[#00f5d4]">Cloud &amp; Distributed Computing</span>
+            <span class="text-xs font-mono px-3 py-1 rounded-lg bg-[#042630] text-[#7fffd4]">Network &amp; Cryptographic Security</span>
+            <span class="text-xs font-mono px-3 py-1 rounded-lg bg-[#042630] text-[#a7f3d0]">Mobile Application Development</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. EXPERIENCE & CTO LEADERSHIP -->
+      <div data-resume-block="experience" class="resume-content-block theme-card rounded-3xl p-7 sm:p-8">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-11 h-11 rounded-xl bg-[#00f5d4]/15 border border-[#00f5d4]/35 flex items-center justify-center text-[#00f5d4]">
+            <i data-lucide="briefcase" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <span class="text-xs font-mono uppercase tracking-wider text-[#00f5d4]">Executive Leadership</span>
+            <h2 class="font-display text-2xl font-bold text-white">Professional Experience</h2>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div class="p-6 rounded-2xl bg-[#02181e]/60 border border-[#7fffd4]/25">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+              <div class="flex items-center gap-3.5">
+                <img
+                  src="https://i.ibb.co/qY8Ng2tX/skill-aura-logo-3.jpg"
+                  alt="SkillAura Logo"
+                  class="w-12 h-12 rounded-xl object-contain bg-[#02181e] p-1 border border-[#7fffd4]/40 shadow-md"
+                />
+                <div>
+                  <h3 class="font-display text-xl font-bold text-white">Chief Technology Officer (CTO)</h3>
+                  <p class="text-sm text-[#7fffd4] font-medium">SkillAura</p>
+                </div>
+              </div>
+              <span class="text-xs font-mono px-3 py-1 rounded-full bg-[#7fffd4]/15 text-[#7fffd4] border border-[#7fffd4]/30 w-fit">Current Role</span>
+            </div>
+            <ul class="space-y-2.5 text-sm text-[#ccfbf1]/90 mt-4">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-[#7fffd4] shrink-0 mt-1"></i>
+                <span>Lead overarching technology strategy, platform architecture, and product innovation across web and mobile ecosystems.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-[#7fffd4] shrink-0 mt-1"></i>
+                <span>Spearhead end-to-end website development, cloud VPS deployment, domain/SSL security hardening, and high-availability hosting.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-[#7fffd4] shrink-0 mt-1"></i>
+                <span>Architect cross-platform Android &amp; iOS mobile applications with modern UI/UX and scalable API backends.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. TECHNICAL SKILLS -->
+      <div data-resume-block="skills" class="resume-content-block theme-card rounded-3xl p-7 sm:p-8">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-11 h-11 rounded-xl bg-[#7fffd4]/15 border border-[#7fffd4]/35 flex items-center justify-center text-[#7fffd4]">
+            <i data-lucide="code-2" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <span class="text-xs font-mono uppercase tracking-wider text-[#7fffd4]">Core Competencies</span>
+            <h2 class="font-display text-2xl font-bold text-white">Technical Arsenal</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-5 rounded-2xl bg-[#02181e]/60 border border-[#7fffd4]/20">
+            <div class="flex justify-between items-center mb-2">
+              <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider text-[#7fffd4]">Web Engineering &amp; Frontend</h4>
+              <span class="text-xs font-mono text-[#7fffd4]">96%</span>
+            </div>
+            <div class="w-full h-1.5 bg-[#042a34] rounded-full overflow-hidden mb-3">
+              <div class="skill-bar-fill h-full rounded-full" data-width="96%"></div>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-[#042630] text-[#ccfbf1]">HTML5 / CSS3 / Tailwind</span>
+              <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-[#042630] text-[#ccfbf1]">JavaScript / TypeScript</span>
+              <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-[#042630] text-[#ccfbf1]">React.js / Next.js</span>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-[#02181e]/60 border border-[#7fffd4]/20">
+            <div class="flex justify-between items-center mb-2">
+              <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider text-[#00f5d4]">Mobile App Development</h4>
+              <span class="text-xs font-mono text-[#00f5d4]">92%</span>
+            </div>
+            <div class="w-full h-1.5 bg-[#042a34] rounded-full overflow-hidden mb-3">
+              <div class="skill-bar-fill h-full rounded-full" data-width="92%"></div>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-[#042630] text-[#ccfbf1]">Android &amp; iOS Hybrid Apps</span>
+              <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-[#042630] text-[#ccfbf1]">Flutter / React Native</span>
+              <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-[#042630] text-[#ccfbf1]">RESTful APIs</span>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-[#02181e]/60 border border-[#7fffd4]/20">
+            <div class="flex justify-between items-center mb-2">
+              <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider text-[#7fffd4]">Cloud Hosting &amp; DevOps</h4>
+              <span class="text-xs font-mono text-[#7fffd4]">95%</span>
+            </div>
+            <div class="w-full h-1.5 bg-[#042a34] rounded-full overflow-hidden mb-3">
+              <div class="skill-bar-fill h-full rounded-full" data-width="95%"></div>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-[#042630] text-[#ccfbf1]">Linux VPS Deployment</span>
+              <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-[#042630] text-[#ccfbf1]">Custom Domain &amp; DNSSEC</span>
+              <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-[#042630] text-[#ccfbf1]">SSL / TLS Automation</span>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-[#02181e]/60 border border-[#7fffd4]/20">
+            <div class="flex justify-between items-center mb-2">
+              <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider text-[#00f5d4]">Cryptography &amp; Cloud Security</h4>
+              <span class="text-xs font-mono text-[#00f5d4]">90%</span>
+            </div>
+            <div class="w-full h-1.5 bg-[#042a34] rounded-full overflow-hidden mb-3">
+              <div class="skill-bar-fill h-full rounded-full" data-width="90%"></div>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-[#042630] text-[#ccfbf1]">Key-Aggregate Cryptosystems</span>
+              <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-[#042630] text-[#ccfbf1]">Fine-Grained Access Control</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. PROJECTS & RESEARCH -->
+      <div data-resume-block="research" class="resume-content-block theme-card rounded-3xl p-7 sm:p-8">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-11 h-11 rounded-xl bg-[#7fffd4]/15 border border-[#7fffd4]/35 flex items-center justify-center text-[#7fffd4]">
+            <i data-lucide="FlaskConical" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <span class="text-xs font-mono uppercase tracking-wider text-[#7fffd4]">Applied Systems</span>
+            <h2 class="font-display text-2xl font-bold text-white">Key Projects &amp; Research</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 rounded-2xl bg-[#02181e]/60 border border-[#7fffd4]/25 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <img
+                  src="https://i.ibb.co/qY8Ng2tX/skill-aura-logo-3.jpg"
+                  alt="SkillAura Platform Logo"
+                  onerror="this.onerror=null;this.src='https://placehold.co/100x100/02181e/7fffd4?text=SA';"
+                  class="w-10 h-10 rounded-xl object-contain bg-[#02181e] p-1 border border-[#7fffd4]/40 shrink-0"
+                />
+                <h3 class="font-display text-lg font-bold text-white leading-snug">SkillAura Platform — EdTech Ecosystem</h3>
+              </div>
+              <p class="text-sm text-[#ccfbf1]/85 leading-relaxed mb-4">
+                Engineered the core LMS framework handling concurrent user sessions, course delivery, and interactive learning modules.
+              </p>
+            </div>
+            <button onclick="openProjectModal('skillaura')" class="inline-flex items-center gap-1.5 text-xs font-mono text-[#7fffd4] hover:underline">
+              <span>Launch Platform Preview</span>
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-[#02181e]/60 border border-[#7fffd4]/25 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <img
+                  src="https://i.ibb.co/7x2NdS8p/Quarkino-LOGO.png"
+                  alt="Quarkinophysics Logo"
+                  onerror="this.onerror=null;this.src='https://placehold.co/100x100/02181e/7fffd4?text=QP';"
+                  class="w-10 h-10 rounded-xl object-contain bg-[#02181e] p-1 border border-[#7fffd4]/40 shrink-0"
+                />
+                <h3 class="font-display text-lg font-bold text-white leading-snug">Quarkinophysics — Digital Physics Education Platform</h3>
+              </div>
+              <p class="text-sm text-[#ccfbf1]/85 leading-relaxed mb-4">
+                Built a specialized physics learning platform with KaTeX formula rendering, video lectures, model question paper databases, and an AI doubt-clearing chatbot.
+              </p>
+            </div>
+            <button onclick="openProjectModal('quark')" class="inline-flex items-center gap-1.5 text-xs font-mono text-[#7fffd4] hover:underline">
+              <span>Launch Physics Simulation Preview</span>
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-[#02181e]/60 border border-[#7fffd4]/25 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <img
+                  src="https://i.ibb.co/HD5G4mmb/Key-Aggregate-Cloud-Security-Workflow.png"
+                  alt="Key-Aggregate Cryptosystem Workflow"
+                  onerror="this.onerror=null;this.src='https://placehold.co/100x100/02181e/00f5d4?text=KAC';"
+                  class="w-10 h-10 rounded-xl object-cover bg-[#02181e] p-1 border border-[#00f5d4]/40 shrink-0"
+                />
+                <h3 class="font-display text-lg font-bold text-white leading-snug">Key-Aggregate Cryptosystem for Cloud Security</h3>
+              </div>
+              <p class="text-sm text-[#ccfbf1]/85 leading-relaxed mb-4">
+                Engineered a cryptographic framework aggregating multiple encryption keys into a compact constant-size key for secure, decentralized access delegation.
+              </p>
+            </div>
+            <button onclick="openProjectModal('kac')" class="inline-flex items-center gap-1.5 text-xs font-mono text-[#7fffd4] hover:underline">
+              <span>Launch Interactive Cryptosystem Demo</span>
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-[#7fffd4]/20 py-10 px-4 sm:px-6 lg:px-8 relative z-10 bg-[#02151a]/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-[#a7f3d0]/80">
+      <div class="flex items-center gap-2.5">
+        <span class="w-7 h-7 rounded-lg accent-gradient-bg flex items-center justify-center font-display font-bold text-xs">DV</span>
+        <span>© 2026 <strong class="text-white">Devaki V K</strong> (MCA) • CTO @ SkillAura. All rights reserved.</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="#home" onclick="switchMainView('portfolio')" class="hover:text-[#7fffd4] transition-colors">Home</a>
+        <a href="#projects" onclick="switchMainView('portfolio')" class="hover:text-[#7fffd4] transition-colors">Projects</a>
+        <button onclick="switchMainView('resume')" class="hover:text-[#7fffd4] transition-colors">Resume</button>
+        <a href="#services" onclick="switchMainView('portfolio')" class="hover:text-[#7fffd4] transition-colors">Packages</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       MODAL 1: INTERACTIVE PROJECT PREVIEW
+       ========================================== -->
+  <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-[#011115]/85 backdrop-blur-md">
+    <div class="theme-card rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative border border-[#7fffd4]/40 shadow-2xl">
+      <button onclick="closeProjectModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-[#02181e] text-[#a7f3d0] hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div id="projectModalContent"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 2: PROJECT & PACKAGE QUOTE MODAL
+       ========================================== -->
+  <div id="quoteModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-[#011115]/90 backdrop-blur-md">
+    <div class="theme-card rounded-3xl max-w-lg w-full p-6 sm:p-8 relative border border-[#7fffd4]/50 shadow-2xl space-y-5">
+      <button onclick="closeQuoteModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-[#02181e] text-[#a7f3d0] hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-3.5 border-b border-[#7fffd4]/20 pb-4">
+        <div class="w-12 h-12 rounded-2xl bg-[#7fffd4]/20 border border-[#7fffd4]/40 flex items-center justify-center text-[#7fffd4] shrink-0">
+          <i data-lucide="mail" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <span class="text-xs font-mono uppercase tracking-wider text-[#7fffd4]">Request Project Quote</span>
+          <h3 class="font-display text-xl font-bold text-white mt-0.5">Let's Build Together</h3>
+        </div>
+      </div>
+
+      <form onsubmit="handleQuoteSubmit(event)" class="space-y-4">
+        <input type="hidden" id="quotePackageInput" value="General Inquiry" />
+        
+        <div>
+          <label class="block text-xs font-mono uppercase tracking-wider text-[#a7f3d0] mb-1.5">Your Name</label>
+          <input
+            id="quoteNameInput"
+            type="text"
+            required
+            placeholder="Enter your name"
+            class="w-full px-4 py-3 rounded-xl bg-[#02181e] border border-[#7fffd4]/30 text-white text-sm focus:outline-none focus:border-[#7fffd4]"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono uppercase tracking-wider text-[#a7f3d0] mb-1.5">Your Email</label>
+          <input
+            id="quoteEmailInput"
+            type="email"
+            required
+            placeholder="name@example.com"
+            class="w-full px-4 py-3 rounded-xl bg-[#02181e] border border-[#7fffd4]/30 text-white text-sm focus:outline-none focus:border-[#7fffd4]"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono uppercase tracking-wider text-[#a7f3d0] mb-1.5">Project Details / Requirements</label>
+          <textarea
+            id="quoteDetailsInput"
+            rows="3"
+            required
+            placeholder="Describe your website, app, or hosting requirements..."
+            class="w-full px-4 py-3 rounded-xl bg-[#02181e] border border-[#7fffd4]/30 text-white text-sm focus:outline-none focus:border-[#7fffd4] resize-none"
+          ></textarea>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-[#7fffd4]/20">
+          <button type="button" onclick="closeQuoteModal()" class="px-4 py-2.5 rounded-xl text-sm font-medium text-[#a7f3d0] hover:text-white">Cancel</button>
+          <div class="flex flex-wrap items-center gap-2">
+            <button type="button" onclick="submitQuoteWithMode('mailto')" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-[#042831] text-[#7fffd4] border border-[#7fffd4]/40 hover:bg-[#7fffd4] hover:text-[#02181e] transition-all">
+              Open Mail App (Phone)
+            </button>
+            <button type="submit" class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold accent-gradient-bg shadow-lg shadow-[#7fffd4]/25">
+              Send via Gmail
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 3: GOOGLE SECURITY PIN VERIFICATION
+       ========================================== -->
+  <div id="securityPinModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-[#011115]/90 backdrop-blur-md">
+    <div class="theme-card rounded-3xl max-w-md w-full p-6 sm:p-8 relative border border-[#7fffd4]/50 shadow-2xl space-y-5">
+      <div class="flex items-center gap-3.5 border-b border-[#7fffd4]/20 pb-4">
+        <div class="w-12 h-12 rounded-2xl bg-[#7fffd4]/20 border border-[#7fffd4]/40 flex items-center justify-center text-[#7fffd4] shrink-0">
+          <i data-lucide="shield-check" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2 text-xs font-mono text-[#7fffd4]">
+            <span class="w-2 h-2 rounded-full bg-[#7fffd4] animate-pulse"></span>
+            Google Security Alert
+          </div>
+          <h3 id="securityModalTitle" class="font-display text-lg font-bold text-white mt-0.5">Unrecognized download attempt</h3>
+        </div>
+      </div>
+
+      <div class="space-y-3 text-sm text-[#ccfbf1]/90">
+        <p id="securityModalDesc" class="leading-relaxed">
+          Someone is trying to download <strong class="text-white">Devaki_V_K_Resume.pdf</strong>. A Google Security notification has been sent to your registered device for review.
+        </p>
+
+        <!-- Visitor PIN Display Area (Visible after owner sends PIN) -->
+        <div id="visitorPinDisplayBox" class="hidden p-4 rounded-2xl bg-[#022830] border border-[#00f5d4]/40 text-center space-y-1.5">
+          <div class="text-xs font-mono text-[#a7f3d0]">Security PIN sent by Owner:</div>
+          <div class="font-mono font-bold text-2xl text-[#00f5d4] tracking-widest">010501</div>
+          <p class="text-[11px] text-[#ccfbf1]/75">Please enter this PIN below to verify and unlock your download.</p>
+        </div>
+
+        <div id="pinInputContainer" class="hidden">
+          <label class="block text-xs font-mono uppercase tracking-wider text-[#a7f3d0] mb-1.5">Enter Security PIN sent by Owner</label>
+          <input
+            id="securityPinInput"
+            type="password"
+            maxlength="6"
+            placeholder="••••••"
+            class="w-full px-4 py-3 rounded-xl bg-[#02181e] border border-[#7fffd4]/40 text-white font-mono text-center text-lg tracking-widest focus:outline-none focus:border-[#7fffd4]"
+          />
+          <p id="securityPinError" class="text-xs text-red-400 font-mono hidden mt-1">Incorrect PIN. Please enter 010501.</p>
+        </div>
+      </div>
+
+      <div id="securityModalActions" class="flex items-center justify-end gap-3 pt-3 border-t border-[#7fffd4]/20">
+        <button type="button" onclick="closeSecurityPinModal()" class="px-4 py-2.5 rounded-xl text-sm font-medium text-[#a7f3d0] hover:text-white">Cancel</button>
+        <button id="securityActionBtn" type="button" onclick="requestOwnerApprovalPin()" class="px-6 py-2.5 rounded-xl text-sm font-semibold accent-gradient-bg shadow-lg shadow-[#7fffd4]/25">
+          Send Notification to Owner
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 4: OWNER SECURITY ALERTS INBOX HUB
+       ========================================== -->
+  <div id="ownerSecurityInboxModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-[#011115]/90 backdrop-blur-md">
+    <div class="theme-card rounded-3xl max-w-xl w-full p-6 sm:p-8 relative border border-[#00f5d4]/50 shadow-2xl space-y-5">
+      <button onclick="closeOwnerSecurityInboxModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-[#02181e] text-[#a7f3d0] hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-3.5 border-b border-[#00f5d4]/20 pb-4">
+        <div class="w-12 h-12 rounded-2xl bg-[#00f5d4]/20 border border-[#00f5d4]/40 flex items-center justify-center text-[#00f5d4] shrink-0">
+          <i data-lucide="bell-ring" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2 text-xs font-mono text-[#00f5d4]">
+            <span class="w-2 h-2 rounded-full bg-[#00f5d4] animate-ping"></span>
+            Real-Time Owner Security Feed
+          </div>
+          <h3 class="font-display text-xl font-bold text-white mt-0.5">Google Security Alert Notifications</h3>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <p class="text-xs text-[#ccfbf1]/85">
+          When visitors attempt to download your resume, security alerts appear here instantly in your browser. You can review the attempt and provide security PIN <code class="text-[#00f5d4] font-mono font-bold">010501</code>.
+        </p>
+        <div id="ownerAlertsList" class="space-y-3 max-h-64 overflow-y-auto pr-1"></div>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-3 border-t border-[#00f5d4]/20">
+          <span class="text-xs font-mono text-[#a7f3d0]">Security PIN: <strong class="text-white">010501</strong></span>
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="exportResumePDF()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-[#042831] text-[#7fffd4] border border-[#7fffd4]/40 hover:bg-[#7fffd4] hover:text-[#02181e] transition-all">
+              Test Laptop / Phone PDF Download
+            </button>
+            <button onclick="closeOwnerSecurityInboxModal()" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold accent-gradient-bg shadow-lg">
+              Close Inbox
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastBanner" class="fixed bottom-6 right-6 z-50 hidden items-center gap-3 px-5 py-3.5 rounded-2xl theme-card border border-[#7fffd4]/50 text-white shadow-2xl">
+    <i data-lucide="check-circle-2" class="w-5 h-5 text-[#7fffd4]"></i>
+    <span id="toastMessage" class="text-sm font-medium">Copied!</span>
+  </div>
+
+  <!-- ==========================================
+       APPLICATION SCRIPTS & AQUAMARINE WAVE ANIMATION
+       ========================================== -->
   <script>
+    function renderIcons() {
+      if (typeof window.lucide !== 'undefined' && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+    }
+
+    renderIcons();
+    window.addEventListener('load', renderIcons);
+
     // Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileDrawer = document.getElementById('mobileDrawer');
-    
+    const mobileMenu = document.getElementById('mobileMenu');
     mobileMenuBtn.addEventListener('click', () => {
-      mobileDrawer.classList.toggle('hidden');
+      mobileMenu.classList.toggle('hidden');
     });
 
-    // Custom Cursor Logic
-    if (window.matchMedia("(pointer: fine)").matches) {
-      const dot = document.getElementById('custom-cursor-dot');
-      const ring = document.getElementById('custom-cursor-ring');
-      
-      document.addEventListener('mousemove', (e) => {
-        dot.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
-        
-        // Slight delay for the ring for a smooth trailing effect
+    // Main View Switcher (Portfolio vs Dedicated Resume Tab)
+    function animateResumeSkillBars() {
+      const bars = document.querySelectorAll('.skill-bar-fill');
+      bars.forEach((bar) => {
+        bar.style.width = '0%';
         setTimeout(() => {
-          ring.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
-        }, 50);
-      });
-
-      // Hover states for links and buttons
-      const interactables = document.querySelectorAll('a, button');
-      interactables.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          ring.style.width = '50px';
-          ring.style.height = '50px';
-          ring.style.borderColor = 'rgba(167, 139, 250, 0.8)';
-          ring.style.backgroundColor = 'rgba(167, 139, 250, 0.1)';
-        });
-        el.addEventListener('mouseleave', () => {
-          ring.style.width = '34px';
-          ring.style.height = '34px';
-          ring.style.borderColor = 'rgba(167, 139, 250, 0.45)';
-          ring.style.backgroundColor = 'transparent';
-        });
+          bar.style.width = bar.getAttribute('data-width') || '90%';
+        }, 120);
       });
     }
+
+    function switchMainView(view) {
+      const portfolioView = document.getElementById('portfolioMainView');
+      const resumeView = document.getElementById('resumeTabView');
+      const navResumeBtn = document.getElementById('navResumeBtn');
+
+      if (view === 'resume') {
+        portfolioView.classList.add('hidden');
+        resumeView.classList.remove('hidden');
+        if (navResumeBtn) {
+          navResumeBtn.classList.add('accent-gradient-bg');
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        animateResumeSkillBars();
+      } else {
+        resumeView.classList.add('hidden');
+        portfolioView.classList.remove('hidden');
+        if (navResumeBtn) {
+          navResumeBtn.classList.remove('accent-gradient-bg');
+        }
+      }
+      renderIcons();
+    }
+
+    // Filter Sub-sections inside Resume Tab
+    function filterResumeSection(category) {
+      const blocks = document.querySelectorAll('.resume-content-block');
+      const buttons = document.querySelectorAll('.resume-subtab');
+
+      buttons.forEach((btn) => {
+        if (btn.getAttribute('data-resume-filter') === category) {
+          btn.className = 'resume-subtab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold accent-gradient-bg shadow-md transition-all';
+        } else {
+          btn.className = 'resume-subtab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[#02181e]/70 text-[#ccfbf1] hover:text-white border border-[#7fffd4]/25 transition-all';
+        }
+      });
+
+      blocks.forEach((block) => {
+        if (category === 'all' || block.getAttribute('data-resume-block') === category) {
+          block.classList.remove('hidden');
+        } else {
+          block.classList.add('hidden');
+        }
+      });
+
+      if (category === 'all' || category === 'skills') {
+        animateResumeSkillBars();
+      }
+    }
+
+    // Owner-Only Access Control & Security Inbox Sync
+    function getStoredAlerts() {
+      try {
+        return JSON.parse(localStorage.getItem('devakivk_security_alerts') || '[]');
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveStoredAlerts(alerts) {
+      localStorage.setItem('devakivk_security_alerts', JSON.stringify(alerts));
+      updateAlertBadgeCount();
+    }
+
+    function updateAlertBadgeCount() {
+      const alerts = getStoredAlerts();
+      const badge = document.getElementById('alertBadgeCount');
+      if (badge) badge.textContent = alerts.length;
+    }
+
+    function syncOwnerPrintButton() {
+      const printBtn = document.getElementById('ownerPrintPdfBtn');
+      const inboxBtn = document.getElementById('ownerAlertsInboxBtn');
+      if (!printBtn) return;
+
+      const params = new URLSearchParams(window.location.search);
+      const isPreviewEnv =
+        window.location.hostname === 'localhost' ||
+        window.location.hostname === '127.0.0.1' ||
+        window.location.hostname.includes('usercontent.goog') ||
+        window.location.protocol === 'blob:' ||
+        window.location.protocol === 'file:';
+
+      if (params.get('owner') === 'true' || params.get('admin') === '1') {
+        localStorage.setItem('devakivk_owner_mode', 'true');
+      } else if (params.get('owner') === 'false' || params.get('visitor') === '1') {
+        localStorage.removeItem('devakivk_owner_mode');
+      }
+
+      const isOwner = localStorage.getItem('devakivk_owner_mode') === 'true' || (isPreviewEnv && localStorage.getItem('devakivk_owner_mode') !== 'false');
+
+      if (isOwner) {
+        printBtn.classList.remove('hidden');
+        printBtn.classList.add('inline-flex');
+        if (inboxBtn) {
+          inboxBtn.classList.remove('hidden');
+          inboxBtn.classList.add('inline-flex');
+        }
+      } else {
+        printBtn.classList.add('hidden');
+        printBtn.classList.remove('inline-flex');
+        if (inboxBtn) {
+          inboxBtn.classList.add('hidden');
+          inboxBtn.classList.remove('inline-flex');
+        }
+      }
+      updateAlertBadgeCount();
+    }
+
+    function toggleOwnerMode() {
+      const current = localStorage.getItem('devakivk_owner_mode');
+      if (current === 'false') {
+        localStorage.setItem('devakivk_owner_mode', 'true');
+        showToast('Owner Mode Active: Security Alert Inbox & Print button enabled');
+      } else if (current === 'true') {
+        localStorage.setItem('devakivk_owner_mode', 'false');
+        showToast('Visitor View Active: Owner controls hidden');
+      } else {
+        localStorage.setItem('devakivk_owner_mode', 'false');
+        showToast('Visitor View Active: Owner controls hidden');
+      }
+      syncOwnerPrintButton();
+    }
+
+    function openOwnerSecurityInboxModal() {
+      const modal = document.getElementById('ownerSecurityInboxModal');
+      const listContainer = document.getElementById('ownerAlertsList');
+      const alerts = getStoredAlerts();
+
+      if (alerts.length === 0) {
+        listContainer.innerHTML = `
+          <div class="p-6 rounded-2xl bg-[#02181e] border border-[#00f5d4]/25 text-center text-sm text-[#a7f3d0]">
+            <i data-lucide="shield-check" class="w-8 h-8 mx-auto mb-2 text-[#00f5d4]"></i>
+            <p class="font-medium text-white">No pending security alerts.</p>
+            <p class="text-xs text-[#ccfbf1]/75 mt-1">When any visitor attempts to download your resume, Google Security notifications will appear here instantly.</p>
+          </div>
+        `;
+      } else {
+        listContainer.innerHTML = alerts.map((alert, idx) => `
+          <div class="p-4 rounded-2xl bg-[#02181e] border border-[#00f5d4]/35 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono text-[#00f5d4] flex items-center gap-1.5">
+                <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i> Unrecognized Download Request #${idx + 1}
+              </span>
+              <span class="text-[11px] font-mono text-[#a7f3d0]">${alert.time}</span>
+            </div>
+            <p class="text-xs text-[#ccfbf1]">${alert.details}</p>
+            <div class="flex items-center justify-between pt-2 border-t border-[#00f5d4]/20 text-xs">
+              <span class="text-xs font-mono text-emerald-400">Security PIN: <strong>010501</strong></span>
+              <div class="flex items-center gap-2">
+                <button onclick="sendPinToVisitor(${idx})" class="px-3 py-1 rounded-lg bg-[#7fffd4] text-[#02181e] hover:opacity-90 transition-all font-mono font-bold">
+                  Send PIN to Visitor
+                </button>
+                <button onclick="dismissAlert(${idx})" class="px-3 py-1 rounded-lg bg-[#00f5d4]/20 text-[#00f5d4] hover:bg-[#00f5d4] hover:text-[#02181e] transition-all font-mono">
+                  Dismiss
+                </button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      renderIcons();
+    }
+
+    function sendPinToVisitor(idx) {
+      localStorage.setItem('devakivk_sent_pin_to_visitor', '010501');
+      showToast('Security PIN 010501 securely dispatched to visitor screen!');
+      
+      // If the visitor modal is open on this device/session, reveal the PIN instantly
+      const visitorPinBox = document.getElementById('visitorPinDisplayBox');
+      if (visitorPinBox) {
+        visitorPinBox.classList.remove('hidden');
+      }
+    }
+
+    function closeOwnerSecurityInboxModal() {
+      const modal = document.getElementById('ownerSecurityInboxModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function dismissAlert(idx) {
+      const alerts = getStoredAlerts();
+      alerts.splice(idx, 1);
+      saveStoredAlerts(alerts);
+      openOwnerSecurityInboxModal();
+    }
+
+    // Google Security Notification & PIN (010501) Flow
+    function triggerGoogleSecurityPinPrompt() {
+      const modal = document.getElementById('securityPinModal');
+      const title = document.getElementById('securityModalTitle');
+      const desc = document.getElementById('securityModalDesc');
+      const pinContainer = document.getElementById('pinInputContainer');
+      const visitorPinBox = document.getElementById('visitorPinDisplayBox');
+      const actionBtn = document.getElementById('securityActionBtn');
+      const err = document.getElementById('securityPinError');
+
+      const isOwner = localStorage.getItem('devakivk_owner_mode') === 'true';
+
+      if (isOwner) {
+        exportResumePDF();
+        return;
+      }
+
+      // Log security alert to owner inbox
+      const alerts = getStoredAlerts();
+      alerts.unshift({
+        time: new Date().toLocaleTimeString(),
+        details: 'Attempt to download Devaki_V_K_Resume.pdf from new visitor device.'
+      });
+      saveStoredAlerts(alerts);
+
+      if (title) title.textContent = 'Unrecognized sign-in / download attempt';
+      if (desc) desc.innerHTML = 'A download attempt for <strong class="text-white">Devaki_V_K_Resume.pdf</strong> was detected from a new browser. A Google Security Alert has been dispatched to Devaki V K.';
+      if (pinContainer) pinContainer.classList.add('hidden');
+      if (visitorPinBox) visitorPinBox.classList.add('hidden');
+      if (actionBtn) {
+        actionBtn.textContent = 'Request Security PIN from Owner';
+        actionBtn.setAttribute('onclick', 'requestOwnerApprovalPin()');
+      }
+      if (err) err.classList.add('hidden');
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function requestOwnerApprovalPin() {
+      const desc = document.getElementById('securityModalDesc');
+      const pinContainer = document.getElementById('pinInputContainer');
+      const visitorPinBox = document.getElementById('visitorPinDisplayBox');
+      const actionBtn = document.getElementById('securityActionBtn');
+
+      if (desc) desc.innerHTML = 'Google Security notification sent to Devaki V K. Waiting for owner to approve and dispatch security PIN...';
+      if (pinContainer) pinContainer.classList.remove('hidden');
+      
+      // Check if owner already sent the PIN in this session
+      const sentPin = localStorage.getItem('devakivk_sent_pin_to_visitor');
+      if (sentPin === '010501') {
+        if (visitorPinBox) visitorPinBox.classList.remove('hidden');
+      } else {
+        if (visitorPinBox) visitorPinBox.classList.add('hidden');
+      }
+
+      if (actionBtn) {
+        actionBtn.textContent = 'Verify & Download PDF';
+        actionBtn.setAttribute('onclick', 'verifyAndExecutePdfDownload()');
+      }
+      showToast('Notification sent to Owner Security Inbox. Waiting for PIN release...');
+    }
+
+    function closeSecurityPinModal() {
+      const modal = document.getElementById('securityPinModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function verifyAndExecutePdfDownload() {
+      const input = document.getElementById('securityPinInput');
+      const err = document.getElementById('securityPinError');
+      const enteredPin = input ? input.value.trim() : '';
+
+      if (enteredPin === '010501') {
+        closeSecurityPinModal();
+        showToast('Security PIN verified! Downloading PDF...');
+        exportResumePDF();
+      } else {
+        if (err) err.classList.remove('hidden');
+        showToast('Incorrect PIN. Please enter 010501');
+      }
+    }
+
+    // Direct PDF Generator & Downloader using jsPDF
+    async function exportResumePDF() {
+      const btnText = document.getElementById('ownerPrintPdfBtnText');
+      if (btnText) btnText.textContent = 'Generating PDF...';
+
+      try {
+        switchMainView('resume');
+        filterResumeSection('all');
+
+        if (!window.jspdf || !window.jspdf.jsPDF) {
+          throw new Error('jsPDF library not loaded');
+        }
+
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+        const pageW = doc.internal.pageSize.getWidth();
+        const pageH = doc.internal.pageSize.getHeight();
+        const margin = 15;
+        let y = 16;
+
+        // Executive Aquamarine Dark Header Banner
+        doc.setFillColor(2, 24, 30);
+        doc.rect(0, 0, pageW, 44, 'F');
+        doc.setFillColor(127, 255, 212);
+        doc.rect(0, 44, pageW, 1.4, 'F');
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(22);
+        doc.setTextColor(255, 255, 255);
+        doc.text('DEVAKI V K', margin, y + 4);
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(10.5);
+        doc.setTextColor(127, 255, 212);
+        doc.text('Chief Technology Officer (CTO) @ SkillAura  |  Master of Computer Applications (MCA)', margin, y + 12);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(204, 251, 241);
+        doc.text('Website: https://www.devakivk.in   |   Email: contact@devakivk.in   |   Location: India (Remote Worldwide)', margin, y + 20);
+
+        y = 55;
+
+        function addSectionHeader(title) {
+          if (y > pageH - 35) {
+            doc.addPage();
+            y = 20;
+          }
+          doc.setFillColor(240, 253, 250);
+          doc.rect(margin, y - 5, pageW - margin * 2, 8, 'F');
+          doc.setDrawColor(20, 184, 166);
+          doc.setLineWidth(0.6);
+          doc.line(margin, y + 3, pageW - margin, y + 3);
+
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(11);
+          doc.setTextColor(2, 24, 30);
+          doc.text(title.toUpperCase(), margin + 2, y + 0.5);
+          y += 10;
+        }
+
+        function addParagraph(text, fontSize = 9.5, color = [40, 55, 60], indent = 0) {
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(fontSize);
+          doc.setTextColor(...color);
+          const lines = doc.splitTextToSize(text, pageW - margin * 2 - indent);
+          doc.text(lines, margin + indent, y);
+          y += lines.length * 4.7 + 2;
+        }
+
+        addSectionHeader('Executive Summary');
+        addParagraph(
+          'Chief Technology Officer (CTO) at SkillAura with a Master of Computer Applications (MCA). Experienced in leading full-stack web engineering, managed cloud VPS & domain hosting infrastructure, cross-platform Android & iOS mobile app development, and cryptographic cloud security architectures.'
+        );
+        y += 2;
+
+        addSectionHeader('Education & Qualifications');
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(10.5);
+        doc.setTextColor(5, 44, 54);
+        doc.text('Master of Computer Applications (MCA)', margin, y);
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9);
+        doc.setTextColor(13, 148, 136);
+        doc.text('Postgraduate Degree', pageW - margin, y, { align: 'right' });
+        y += 5;
+        addParagraph(
+          'Advanced postgraduate specialization in software architecture, cloud computing infrastructure, mobile application development, database management systems, and applied cryptography.'
+        );
+        addParagraph(
+          'Focus Areas: Advanced Software Engineering • Cloud & Distributed Computing • Network & Cryptographic Security • Mobile Application Development',
+          9,
+          [15, 118, 110]
+        );
+        y += 2;
+
+        addSectionHeader('Professional Experience & Leadership');
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(10.5);
+        doc.setTextColor(5, 44, 54);
+        doc.text('Chief Technology Officer (CTO) — SkillAura', margin, y);
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9);
+        doc.setTextColor(13, 148, 136);
+        doc.text('Current Role', pageW - margin, y, { align: 'right' });
+        y += 5.5;
+
+        const expBullets = [
+          '• Lead overarching technology strategy, platform architecture, and product innovation across web and mobile ecosystems.',
+          '• Spearhead end-to-end website development, cloud VPS deployment, domain/SSL security hardening, and high-availability hosting.',
+          '• Architect cross-platform Android & iOS mobile applications with intuitive user interfaces and scalable API backends.'
+        ];
+        expBullets.forEach((b) => addParagraph(b, 9.5, [40, 55, 60], 2));
+        y += 2;
+
+        addSectionHeader('Technical Arsenal & Core Competencies');
+        const skillsList = [
+          ['Web Engineering & Frontend (96%):', 'HTML5, CSS3, Tailwind CSS, JavaScript, TypeScript, React.js, Next.js'],
+          ['Mobile App Development (92%):', 'Cross-Platform Android & iOS Apps, Flutter, React Native, RESTful & GraphQL APIs'],
+          ['Cloud Hosting & DevOps (95%):', 'Linux VPS Deployment, Custom Domain & DNSSEC Management, SSL/TLS Automation, 99.9% Uptime'],
+          ['Cryptography & Security (90%):', 'Key-Aggregate Cryptosystems, Fine-Grained Cloud Access Control, Zero-Trust Data Sharing']
+        ];
+        skillsList.forEach(([label, items]) => {
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(9.5);
+          doc.setTextColor(5, 44, 54);
+          doc.text(label, margin, y);
+          doc.setFont('helvetica', 'normal');
+          doc.setTextColor(40, 55, 60);
+          const wrapped = doc.splitTextToSize(items, pageW - margin * 2 - 58);
+          doc.text(wrapped, margin + 58, y);
+          y += wrapped.length * 4.8 + 1.5;
+        });
+        y += 2;
+
+        addSectionHeader('Featured Projects & Research');
+        const projects = [
+          {
+            name: '1. SkillAura Platform — EdTech Web & Learning Ecosystem (CTO)',
+            desc: 'Comprehensive educational technology ecosystem engineered to streamline learning management, concurrent user sessions, real-time course delivery, and interactive learning modules.'
+          },
+          {
+            name: '2. Quarkinophysics — Academic Physics App & AI Doubt-Clearing Chatbot',
+            desc: 'Specialized digital platform built for advanced physics education featuring KaTeX mathematical rendering, model exam databases, video lectures, and an embedded AI doubt-clearing chatbot.'
+          },
+          {
+            name: '3. Key-Aggregate Cryptosystem — Cloud Storage Security Research',
+            desc: 'Cryptographic framework that aggregates multiple encryption keys into a single constant-size compact key for secure, decentralized delegation of cloud file access rights.'
+          }
+        ];
+
+        projects.forEach((p) => {
+          if (y > pageH - 28) {
+            doc.addPage();
+            y = 20;
+          }
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(10);
+          doc.setTextColor(5, 44, 54);
+          doc.text(p.name, margin, y);
+          y += 4.5;
+          addParagraph(p.desc, 9.2, [50, 65, 70], 3);
+          y += 1;
+        });
+
+        doc.setDrawColor(200, 230, 225);
+        doc.line(margin, pageH - 14, pageW - margin, pageH - 14);
+        doc.setFont('helvetica', 'italic');
+        doc.setFontSize(8.5);
+        doc.setTextColor(100, 120, 125);
+        doc.text('Generated from devakivk.in — Devaki V K (MCA) | Chief Technology Officer @ SkillAura', pageW / 2, pageH - 9, {
+          align: 'center'
+        });
+
+        // Mobile & Desktop compatible Blob + Data URI download trigger
+        const pdfBlob = doc.output('blob');
+        const blobUrl = URL.createObjectURL(pdfBlob);
+
+        const downloadLink = document.createElement('a');
+        downloadLink.href = blobUrl;
+        downloadLink.download = 'Devaki_V_K_Resume.pdf';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+
+        // Mobile fallback: if on phone/tablet where silent blob download can be blocked, also open in tab
+        const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        if (isMobileDevice) {
+          setTimeout(() => {
+            window.open(blobUrl, '_blank');
+          }, 250);
+        }
+
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 15000);
+        showToast('Downloaded Devaki_V_K_Resume.pdf successfully!');
+      } catch (err) {
+        console.error('PDF generation error:', err);
+        showToast('Opening browser print dialog...');
+        window.print();
+      } finally {
+        if (btnText) btnText.textContent = 'Print / Save PDF';
+      }
+    }
+
+    // Interactive Project Preview Modal
+    function openProjectModal(projectKey) {
+      const modal = document.getElementById('projectModal');
+      const container = document.getElementById('projectModalContent');
+
+      if (projectKey === 'skillaura') {
+        container.innerHTML = `
+          <div class="space-y-4">
+            <div class="flex items-center gap-3.5">
+              <img
+                src="https://i.ibb.co/qY8Ng2tX/skill-aura-logo-3.jpg"
+                alt="SkillAura Platform Logo"
+                class="w-14 h-14 rounded-2xl object-contain bg-[#02181e] p-1.5 border border-[#7fffd4]/50 shadow-lg"
+              />
+              <div>
+                <span class="text-xs font-mono uppercase tracking-wider px-3 py-1 rounded-full theme-badge">EdTech Web Platform • CTO Architecture</span>
+                <h3 class="font-display text-2xl font-bold text-white mt-1.5">SkillAura Platform — Learning Ecosystem</h3>
+              </div>
+            </div>
+            <p class="text-sm text-[#ccfbf1]/90">
+              Engineered the core framework to handle concurrent user sessions, real-time course delivery, and interactive learning modules across web and mobile.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+              <div class="p-4 rounded-2xl bg-[#02181e] border border-[#7fffd4]/30">
+                <div class="text-xs font-mono text-[#a7f3d0]">Session Engine</div>
+                <div class="font-display text-lg font-bold text-[#7fffd4] mt-0.5">Concurrent Multi-User</div>
+                <p class="text-xs text-[#ccfbf1]/75 mt-1">Low-latency state sync &amp; scalable session handling.</p>
+              </div>
+              <div class="p-4 rounded-2xl bg-[#02181e] border border-[#7fffd4]/30">
+                <div class="text-xs font-mono text-[#a7f3d0]">Course Pipeline</div>
+                <div class="font-display text-lg font-bold text-[#00f5d4] mt-0.5">Interactive Modules</div>
+                <p class="text-xs text-[#ccfbf1]/75 mt-1">Structured assessments, progress tracking &amp; media delivery.</p>
+              </div>
+              <div class="p-4 rounded-2xl bg-[#02181e] border border-[#7fffd4]/30">
+                <div class="text-xs font-mono text-[#a7f3d0]">Infrastructure</div>
+                <div class="font-display text-lg font-bold text-[#7fffd4] mt-0.5">99.9% Cloud Uptime</div>
+                <p class="text-xs text-[#ccfbf1]/75 mt-1">Hardened cloud deployment &amp; automated SSL security.</p>
+              </div>
+            </div>
+          </div>
+        `;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        renderIcons();
+      } else if (projectKey === 'quark') {
+        container.innerHTML = `
+          <div class="space-y-4">
+            <div class="flex items-center gap-3.5">
+              <img
+                src="https://i.ibb.co/7x2NdS8p/Quarkino-LOGO.png"
+                alt="Quarkinophysics Logo"
+                onerror="this.onerror=null;this.src='https://placehold.co/120x120/02181e/7fffd4?text=QP';"
+                class="w-14 h-14 rounded-2xl object-contain bg-[#02181e] p-1.5 border border-[#7fffd4]/50 shadow-lg"
+              />
+              <div>
+                <span class="text-xs font-mono uppercase tracking-wider px-3 py-1 rounded-full theme-badge">Academic App • KaTeX &amp; AI Chatbot</span>
+                <h3 class="font-display text-2xl font-bold text-white mt-1.5">Quarkinophysics — Digital Physics Platform</h3>
+              </div>
+            </div>
+            <p class="text-sm text-[#ccfbf1]/90">
+              Features interactive study notes, video lectures, KaTeX mathematical formula rendering, model question paper databases, and a custom AI doubt-clearing chatbot.
+            </p>
+            <div class="p-4 rounded-2xl bg-[#02181e] border border-[#7fffd4]/30">
+              <canvas id="quarkSimCanvas" height="140" class="w-full rounded-lg"></canvas>
+              <div class="flex items-center justify-between gap-4 mt-3 pt-3 border-t border-[#7fffd4]/20 text-xs font-mono text-[#a7f3d0]">
+                <label class="flex items-center gap-2">
+                  <span>Wave Frequency:</span>
+                  <input id="quarkFreqSlider" type="range" min="1" max="8" value="3" class="accent-[#7fffd4]" />
+                </label>
+                <span class="text-[#7fffd4]">KaTeX + AI Doubt Bot Ready</span>
+              </div>
+            </div>
+          </div>
+        `;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        renderIcons();
+        startQuarkWaveSimulation();
+      } else {
+        container.innerHTML = `
+          <div class="space-y-4">
+            <div class="flex items-center gap-3.5">
+              <img
+                src="https://i.ibb.co/HD5G4mmb/Key-Aggregate-Cloud-Security-Workflow.png"
+                alt="Key-Aggregate Cryptosystem Workflow"
+                onerror="this.onerror=null;this.src='https://placehold.co/120x120/02181e/00f5d4?text=KAC';"
+                class="w-14 h-14 rounded-2xl object-cover bg-[#02181e] p-1 border border-[#00f5d4]/50 shadow-lg"
+              />
+              <div>
+                <span class="text-xs font-mono uppercase tracking-wider px-3 py-1 rounded-full theme-badge">Cloud Security Architecture</span>
+                <h3 class="font-display text-2xl font-bold text-white mt-1.5">Key-Aggregate Cryptosystem (KAC)</h3>
+              </div>
+            </div>
+            <div class="rounded-2xl overflow-hidden border border-[#7fffd4]/30 bg-[#02181e] max-h-48 flex items-center justify-center">
+              <img
+                src="https://i.ibb.co/HD5G4mmb/Key-Aggregate-Cloud-Security-Workflow.png"
+                alt="Key-Aggregate Cloud Security Workflow Diagram"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x220/02181e/00f5d4?text=Key-Aggregate+Cloud+Security+Workflow';"
+                class="w-full h-full max-h-48 object-contain"
+              />
+            </div>
+            <p class="text-sm text-[#ccfbf1]/90">
+              Select which encrypted cloud file classes you want to share below to generate a single constant-size Aggregate Key:
+            </p>
+            <div class="grid grid-cols-3 gap-2.5 pt-1">
+              <label class="flex items-center gap-2 p-3 rounded-xl bg-[#02181e] border border-[#7fffd4]/30 cursor-pointer text-xs font-mono text-white">
+                <input type="checkbox" checked onchange="updateKacKey()" class="kac-check accent-[#7fffd4]" value="Class-1" /> Class #1 (Medical)
+              </label>
+              <label class="flex items-center gap-2 p-3 rounded-xl bg-[#02181e] border border-[#7fffd4]/30 cursor-pointer text-xs font-mono text-white">
+                <input type="checkbox" checked onchange="updateKacKey()" class="kac-check accent-[#7fffd4]" value="Class-4" /> Class #4 (Finance)
+              </label>
+              <label class="flex items-center gap-2 p-3 rounded-xl bg-[#02181e] border border-[#7fffd4]/30 cursor-pointer text-xs font-mono text-white">
+                <input type="checkbox" onchange="updateKacKey()" class="kac-check accent-[#7fffd4]" value="Class-7" /> Class #7 (Research)
+              </label>
+            </div>
+            <div class="p-4 rounded-2xl bg-[#02181e] border border-[#7fffd4]/40 font-mono text-xs space-y-1.5">
+              <div class="text-[#a7f3d0]">Generated Constant-Size Aggregate Key (K_S):</div>
+              <div id="kacHashOutput" class="text-[#7fffd4] break-all font-semibold">0x9F4A...7E21C8B04D12 (256-bit compact key)</div>
+            </div>
+          </div>
+        `;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        renderIcons();
+      }
+    }
+
+    function closeProjectModal() {
+      const modal = document.getElementById('projectModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function startQuarkWaveSimulation() {
+      const simCanvas = document.getElementById('quarkSimCanvas');
+      const slider = document.getElementById('quarkFreqSlider');
+      if (!simCanvas) return;
+      const ctx = simCanvas.getContext('2d');
+      let phase = 0;
+
+      function drawWave() {
+        if (!document.getElementById('quarkSimCanvas')) return;
+        const w = (simCanvas.width = simCanvas.clientWidth || 500);
+        const h = simCanvas.height;
+        const freq = slider ? Number(slider.value) : 3;
+
+        ctx.clearRect(0, 0, w, h);
+        ctx.strokeStyle = '#7fffd4';
+        ctx.lineWidth = 2.2;
+        ctx.beginPath();
+        for (let x = 0; x < w; x++) {
+          const y = h / 2 + Math.sin((x / w) * Math.PI * 2 * freq + phase) * 36 * Math.sin((x / w) * Math.PI);
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+        phase += 0.08;
+        requestAnimationFrame(drawWave);
+      }
+      drawWave();
+    }
+
+    function updateKacKey() {
+      const checks = Array.from(document.querySelectorAll('.kac-check:checked')).map((c) => c.value);
+      const out = document.getElementById('kacHashOutput');
+      if (!out) return;
+      if (checks.length === 0) {
+        out.textContent = 'No classes selected — Select at least 1 class to derive key';
+        return;
+      }
+      const seed = checks.join('|');
+      let hash = 2166136261;
+      for (let i = 0; i < seed.length; i++) {
+        hash ^= seed.charCodeAt(i);
+        hash = Math.imul(hash, 16777619);
+      }
+      const hex = (hash >>> 0).toString(16).toUpperCase().padStart(8, '0');
+      out.textContent = `0x${hex}A9F4...7E21C8B04D12 (${checks.join(', ')} -> 256-bit compact key)`;
+    }
+
+    // Quote Modal & Smart Multi-Device Mail Connectivity Dispatcher
+    const OWNER_EMAIL = 'contact@devakivk.in';
+
+    function dispatchSmartEmail(toEmail, subjectText, bodyText, preferredMode = 'auto') {
+      const subject = encodeURIComponent(subjectText);
+      const body = encodeURIComponent(bodyText);
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+      const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(toEmail)}&su=${subject}&body=${body}`;
+      const mailtoUrl = `mailto:${toEmail}?subject=${subject}&body=${body}`;
+
+      if (preferredMode === 'mailto' || (preferredMode === 'auto' && isMobile)) {
+        // On smartphones, mailto: directly launches the native Gmail / Mail app seamlessly
+        const link = document.createElement('a');
+        link.href = mailtoUrl;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showToast(`Opening Mail App to ${toEmail}...`);
+      } else {
+        // On laptops/desktops, open Gmail Web Compose in a new tab with mailto fallback if popups are blocked
+        const win = window.open(gmailWebUrl, '_blank', 'noopener,noreferrer');
+        if (!win) {
+          window.location.href = mailtoUrl;
+        }
+        showToast(`Opened Gmail Compose to ${toEmail}!`);
+      }
+    }
+
+    function openQuoteModal(packageName) {
+      const modal = document.getElementById('quoteModal');
+      const pkgInput = document.getElementById('quotePackageInput');
+      if (pkgInput) {
+        pkgInput.value = packageName;
+      }
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closeQuoteModal() {
+      const modal = document.getElementById('quoteModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function submitQuoteWithMode(mode) {
+      const pkg = document.getElementById('quotePackageInput')?.value || 'Inquiry';
+      const name = document.getElementById('quoteNameInput')?.value.trim() || 'Client';
+      const email = document.getElementById('quoteEmailInput')?.value.trim() || 'Not provided';
+      const details = document.getElementById('quoteDetailsInput')?.value.trim() || 'Interested in discussing this package.';
+
+      const subjectText = `[devakivk.in] ${pkg} — Inquiry from ${name}`;
+      const bodyText = `Hi Devaki,\n\nI visited devakivk.in and would like to discuss: ${pkg}.\n\nName: ${name}\nEmail: ${email}\n\nProject Details:\n${details}\n\nBest regards,\n${name}`;
+
+      dispatchSmartEmail(OWNER_EMAIL, subjectText, bodyText, mode);
+      closeQuoteModal();
+    }
+
+    function handleQuoteSubmit(e) {
+      e.preventDefault();
+      submitQuoteWithMode('gmail');
+    }
+
+    // Copy Email Helper
+    function copyEmailAddress() {
+      const email = 'contact@devakivk.in';
+      const tempInput = document.createElement('textarea');
+      tempInput.value = email;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+
+      document.getElementById('copyEmailText').textContent = 'Copied: contact@devakivk.in';
+      showToast('Email address copied to clipboard!');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastBanner');
+      document.getElementById('toastMessage').textContent = msg;
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('flex');
+      }, 3200);
+    }
+
+    // ==========================================
+    // INITIALIZE ANIMATIONS & AQUAMARINE LIQUID SILK WAVE CANVAS
+    // ==========================================
+    window.addEventListener('DOMContentLoaded', () => {
+      syncOwnerPrintButton();
+
+      // 1. Scroll Reveal Observer
+      const revealEls = document.querySelectorAll('.reveal-up');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      revealEls.forEach((el) => observer.observe(el));
+
+      // 2. Top Scroll Progress Bar
+      const progressBar = document.getElementById('scrollProgressBar');
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (progressBar && docHeight > 0) {
+          progressBar.style.width = `${Math.min(100, (scrollTop / docHeight) * 100)}%`;
+        }
+      }, { passive: true });
+
+      // 3. Card Cursor Spotlight
+      document.querySelectorAll('.theme-card').forEach((card) => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+          card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+        });
+      });
+
+      // 4. Hero Typewriter Animation
+      const roles = [
+        'Cross-Platform iOS & Android App Development',
+        'Cryptographic Cloud Security Systems',
+        'High-Availability Web & VPS Hosting'
+      ];
+      let roleIdx = 0;
+      let charIdx = roles[0].length;
+      let isDeleting = true;
+      const typeEl = document.getElementById('typewriterText');
+
+      function tickTypewriter() {
+        if (!typeEl) return;
+        const current = roles[roleIdx];
+        if (isDeleting) {
+          charIdx--;
+          typeEl.textContent = current.substring(0, charIdx);
+          if (charIdx === 0) {
+            isDeleting = false;
+            roleIdx = (roleIdx + 1) % roles.length;
+            setTimeout(tickTypewriter, 350);
+          } else {
+            setTimeout(tickTypewriter, 28);
+          }
+        } else {
+          charIdx++;
+          typeEl.textContent = current.substring(0, charIdx);
+          if (charIdx === current.length) {
+            isDeleting = true;
+            setTimeout(tickTypewriter, 2400);
+          } else {
+            setTimeout(tickTypewriter, 52);
+          }
+        }
+      }
+      setTimeout(tickTypewriter, 2200);
+
+      // 5. AQUAMARINE VOLUMETRIC LIGHT RAYS & BIOLUMINESCENT FIREFLY STARDUST
+      const canvas = document.getElementById('aquaWaveCanvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width = (canvas.width = window.innerWidth);
+        let height = (canvas.height = window.innerHeight);
+
+        let mouseX = width * 0.5;
+        let mouseY = height * 0.35;
+        let smoothX = mouseX;
+        let smoothY = mouseY;
+        let time = 0;
+
+        window.addEventListener('resize', () => {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        });
+
+        // Diagonal Volumetric Aquamarine Light Beams
+        const lightRays = Array.from({ length: 6 }, (_, i) => ({
+          xRatio: 0.12 + i * 0.16,
+          width: 110 + (i % 3) * 55,
+          angle: 0.32,
+          speed: 0.006 + (i % 2) * 0.004,
+          phase: i * 1.3,
+          maxAlpha: 0.07 + (i % 3) * 0.025
+        }));
+
+        // Bioluminescent Aquamarine Firefly Motes
+        const FIREFLY_COUNT = 75;
+        const fireflies = Array.from({ length: FIREFLY_COUNT }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          radius: Math.random() * 2.6 + 1,
+          pulseSpeed: Math.random() * 0.04 + 0.015,
+          pulsePhase: Math.random() * Math.PI * 2,
+          isSparkle: Math.random() > 0.72
+        }));
+
+        // Click Starburst Particles
+        const burstSparks = [];
+        window.addEventListener('click', (e) => {
+          for (let i = 0; i < 16; i++) {
+            const angle = (Math.PI * 2 * i) / 16 + Math.random() * 0.2;
+            const speed = Math.random() * 3.2 + 1.2;
+            burstSparks.push({
+              x: e.clientX,
+              y: e.clientY,
+              vx: Math.cos(angle) * speed,
+              vy: Math.sin(angle) * speed,
+              alpha: 1,
+              size: Math.random() * 2.5 + 1.2
+            });
+          }
+        });
+
+        function drawStarGlint(x, y, size, alpha) {
+          ctx.save();
+          ctx.translate(x, y);
+          ctx.strokeStyle = `rgba(240, 253, 250, ${alpha})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(-size * 2.8, 0);
+          ctx.lineTo(size * 2.8, 0);
+          ctx.moveTo(0, -size * 2.8);
+          ctx.lineTo(0, size * 2.8);
+          ctx.stroke();
+          ctx.restore();
+        }
+
+        function renderAquamarineAtmosphere() {
+          ctx.clearRect(0, 0, width, height);
+          time += 1;
+
+          smoothX += (mouseX - smoothX) * 0.06;
+          smoothY += (mouseY - smoothY) * 0.06;
+
+          ctx.save();
+          ctx.globalCompositeOperation = 'screen';
+
+          // 1. Volumetric Diagonal Aquamarine Sunbeams
+          lightRays.forEach((ray) => {
+            const driftX = Math.sin(time * ray.speed + ray.phase) * 70 + (smoothX - width * 0.5) * 0.08;
+            const startX = width * ray.xRatio + driftX;
+            const endX = startX + height * ray.angle;
+            const currentAlpha = ray.maxAlpha * (0.65 + 0.35 * Math.sin(time * 0.012 + ray.phase));
+
+            const rayGrad = ctx.createLinearGradient(startX, 0, endX, height * 0.92);
+            rayGrad.addColorStop(0, `rgba(127, 255, 212, ${currentAlpha})`);
+            rayGrad.addColorStop(0.5, `rgba(0, 245, 212, ${currentAlpha * 0.5})`);
+            rayGrad.addColorStop(1, 'rgba(2, 24, 30, 0)');
+
+            ctx.fillStyle = rayGrad;
+            ctx.beginPath();
+            ctx.moveTo(startX - ray.width * 0.5, 0);
+            ctx.lineTo(startX + ray.width * 0.5, 0);
+            ctx.lineTo(endX + ray.width * 1.1, height);
+            ctx.lineTo(endX - ray.width * 1.1, height);
+            ctx.closePath();
+            ctx.fill();
+          });
+
+          // 2. Soft Interactive Cursor Aura
+          const cursorGlow = ctx.createRadialGradient(smoothX, smoothY, 8, smoothX, smoothY, 260);
+          cursorGlow.addColorStop(0, 'rgba(127, 255, 212, 0.18)');
+          cursorGlow.addColorStop(0.5, 'rgba(0, 245, 212, 0.06)');
+          cursorGlow.addColorStop(1, 'rgba(2, 24, 30, 0)');
+          ctx.fillStyle = cursorGlow;
+          ctx.beginPath();
+          ctx.arc(smoothX, smoothY, 260, 0, Math.PI * 2);
+          ctx.fill();
+
+          // 3. Bioluminescent Firefly Stardust
+          for (let i = 0; i < fireflies.length; i++) {
+            const f = fireflies[i];
+
+            // Gentle organic swirl + subtle cursor attraction
+            const angle = Math.sin(f.x * 0.002 + time * 0.005) + Math.cos(f.y * 0.002 + time * 0.005);
+            f.vx += Math.cos(angle) * 0.012;
+            f.vy += Math.sin(angle) * 0.012;
+
+            const dx = smoothX - f.x;
+            const dy = smoothY - f.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < 220 && dist > 10) {
+              f.vx += (dx / dist) * 0.025;
+              f.vy += (dy / dist) * 0.025;
+            }
+
+            // Damping speed
+            f.vx *= 0.96;
+            f.vy *= 0.96;
+            f.x += f.vx;
+            f.y += f.vy;
+
+            // Wrap screen edges
+            if (f.x < -20) f.x = width + 20;
+            if (f.x > width + 20) f.x = -20;
+            if (f.y < -20) f.y = height + 20;
+            if (f.y > height + 20) f.y = -20;
+
+            const pulse = 0.35 + 0.65 * (0.5 + 0.5 * Math.sin(time * f.pulseSpeed + f.pulsePhase));
+            const glowRadius = f.radius * 5.5;
+
+            const moteGrad = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, glowRadius);
+            moteGrad.addColorStop(0, `rgba(240, 253, 250, ${pulse * 0.95})`);
+            moteGrad.addColorStop(0.35, `rgba(127, 255, 212, ${pulse * 0.65})`);
+            moteGrad.addColorStop(1, 'rgba(0, 245, 212, 0)');
+
+            ctx.fillStyle = moteGrad;
+            ctx.beginPath();
+            ctx.arc(f.x, f.y, glowRadius, 0, Math.PI * 2);
+            ctx.fill();
+
+            if (f.isSparkle && pulse > 0.82) {
+              drawStarGlint(f.x, f.y, f.radius * 1.3, (pulse - 0.7) * 1.8);
+            }
+          }
+
+          // 4. Click Starburst Sparks
+          for (let i = burstSparks.length - 1; i >= 0; i--) {
+            const sp = burstSparks[i];
+            sp.x += sp.vx;
+            sp.y += sp.vy;
+            sp.vx *= 0.95;
+            sp.vy *= 0.95;
+            sp.alpha -= 0.022;
+
+            if (sp.alpha <= 0) {
+              burstSparks.splice(i, 1);
+              continue;
+            }
+
+            ctx.fillStyle = `rgba(127, 255, 212, ${sp.alpha})`;
+            ctx.beginPath();
+            ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          ctx.restore();
+          requestAnimationFrame(renderAquamarineAtmosphere);
+        }
+
+        renderAquamarineAtmosphere();
+      }
+    });
   </script>
 </body>
 </html>
